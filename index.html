@@ -284,7 +284,213 @@ async function loadBooks(){
 
 /* OPEN BOOK */
 
-async function openBook(bookId){
+  async function openChapter(chapterId){
+
+  app.innerHTML = `
+    <button class="button back" onclick="showBooks()">
+      ← Chapters
+    </button>
+
+    <div class="message">
+      Loading chapter...
+    </div>
+  `;
+
+  // Get chapter number from Supabase
+  const { data: chapter, error } = await db
+    .from("chapters")
+    .select("*")
+    .eq("id", chapterId)
+    .single();
+
+  if(error){
+    app.innerHTML = `
+      <div class="message">
+        Unable to open chapter.<br><br>
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+    return;
+  }
+
+  // Load the actual book content
+  let bookData;
+
+  try {
+    const response = await fetch("./krishna_chapters.json");
+
+    if(!response.ok){
+      throw new Error("Could not load book content.");
+    }
+
+    bookData = await response.json();
+
+  } catch(error) {
+
+    app.innerHTML = `
+      <div class="message">
+        Book content could not be loaded.<br><br>
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+
+    return;
+  }
+
+  const currentNumber = Number(chapter.chapter_number);
+
+  const currentChapter = bookData.chapters.find(
+    c => c.chapter_number === currentNumber
+  );
+
+  if(!currentChapter){
+
+    app.innerHTML = `
+      <div class="message">
+        Chapter ${currentNumber} was not found.
+      </div>
+    `;
+
+    return;
+  }
+
+  let content = "";
+
+  currentChapter.paragraphs.forEach(paragraph => {
+
+    content += `
+      <p class="reading-paragraph">
+        ${escapeHTML(paragraph)}
+      </p>
+    `;
+
+  });
+
+  const previousChapter =
+    bookData.chapters.find(
+      c => c.chapter_number === currentNumber - 1
+    );
+
+  const nextChapter =
+    bookData.chapters.find(
+      c => c.chapter_number === currentNumber + 1
+    );
+
+  let navigation = `
+    <div class="chapter-navigation">
+  `;
+
+  if(previousChapter){
+
+    navigation += `
+      <button
+        class="nav-button"
+        onclick="openChapterByNumber(${previousChapter.chapter_number})">
+        ← Chapter ${previousChapter.chapter_number}
+      </button>
+    `;
+
+  } else {
+
+    navigation += `
+      <button
+        class="nav-button"
+        onclick="showBooks()">
+        ← Chapters
+      </button>
+    `;
+
+  }
+
+  navigation += `
+    <div class="chapter-count">
+      ${currentNumber} / 90
+    </div>
+  `;
+
+  if(nextChapter){
+
+    navigation += `
+      <button
+        class="nav-button"
+        onclick="openChapterByNumber(${nextChapter.chapter_number})">
+        Chapter ${nextChapter.chapter_number} →
+      </button>
+    `;
+
+  } else {
+
+    navigation += `
+      <div class="end-book">
+        End of Kṛṣṇa Book
+      </div>
+    `;
+
+  }
+
+  navigation += `</div>`;
+
+  app.innerHTML = `
+
+    <button
+      class="button back"
+      onclick="showBooks()">
+      ← Chapters
+    </button>
+
+    <article class="reading">
+
+      <div class="chapter-number">
+        CHAPTER ${currentNumber}
+      </div>
+
+      <h2>
+        ${escapeHTML(currentChapter.title)}
+      </h2>
+
+      <div class="reading-content">
+        ${content}
+      </div>
+
+    </article>
+
+    ${navigation}
+
+  `;
+}
+
+
+/* Open another chapter by its number */
+
+async function openChapterByNumber(chapterNumber){
+
+  const { data, error } = await db
+    .from("chapters")
+    .select("id")
+    .eq("chapter_number", chapterNumber)
+    .eq(
+      "book_id",
+      (await db
+        .from("books")
+        .select("id")
+        .eq(
+          "title",
+          "Kṛṣṇa, the Supreme Personality of Godhead"
+        )
+        .single()
+      ).data.id
+    )
+    .single();
+
+  if(error){
+
+    alert("Could not open chapter.");
+
+    return;
+  }
+
+  openChapter(data.id);
+}
 
   app.innerHTML = `
     <button class="button back" onclick="showHome()">
