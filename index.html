@@ -1,261 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kṛṣṇa Verse</title>
+  <title>Kṛṣṇa Verse</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-*{
-  box-sizing:border-box;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body{
-  margin:0;
-  font-family:Georgia, "Times New Roman", serif;
-  background:#f8f4ec;
-  color:#302b38;
-}
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f7f3ea;
+      color: #211f2b;
+    }
 
-header{
-  background:#29213d;
-  color:white;
-  padding:24px 18px;
-  text-align:center;
-}
+    header {
+      background: linear-gradient(135deg, #17133b, #2c2462);
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
 
-header h1{
-  margin:0;
-  font-size:30px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: 0.3px;
+    }
 
-header p{
-  margin:7px 0 0;
-  opacity:.85;
-  font-size:14px;
-}
+    header p {
+      margin: 8px 0 0;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      opacity: 0.85;
+    }
 
-main{
-  max-width:850px;
-  margin:auto;
-  padding:25px 18px 50px;
-}
+    main {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      padding: 24px 16px 60px;
+    }
 
-.hero{
-  text-align:center;
-  padding:30px 10px;
-}
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    }
 
-.hero h2{
-  font-size:30px;
-  margin-bottom:10px;
-}
+    .book-title {
+      font-size: 29px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
 
-.hero p{
-  color:#6c6572;
-  line-height:1.6;
-}
+    .subtitle {
+      color: #777;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
 
-.book-card{
-  background:white;
-  border-radius:16px;
-  padding:25px;
-  margin-top:25px;
-  box-shadow:0 4px 18px rgba(0,0,0,.08);
-  cursor:pointer;
-  transition:.2s;
-}
+    .description {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
 
-.book-card:hover{
-  transform:translateY(-2px);
-}
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
 
-.book-card h3{
-  margin-top:0;
-  color:#29213d;
-  font-size:23px;
-}
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 13px;
+      padding: 15px 16px;
+      margin: 6px 0;
+      background: #eee9dc;
+      color: #25222d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.book-card p{
-  line-height:1.6;
-  color:#6c6572;
-}
+    button:hover {
+      background: #e4dece;
+    }
 
-.button{
-  background:#29213d;
-  color:white;
-  border:none;
-  border-radius:10px;
-  padding:12px 17px;
-  cursor:pointer;
-  font-size:15px;
-}
+    .primary-button {
+      background: #211a4c;
+      color: white;
+      text-align: center;
+    }
 
-.back{
-  margin-bottom:20px;
-}
+    .primary-button:hover {
+      background: #30266b;
+    }
 
-.chapter-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
+    .chapter-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
 
-.chapter{
-  background:white;
-  padding:17px;
-  border-radius:12px;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
+    .chapter-info {
+      display: block;
+    }
 
-.chapter:hover{
-  background:#f1ece3;
-}
+    .chapter-number {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 4px;
+    }
 
-.chapter-number{
-  color:#8b6b23;
-  font-size:14px;
-  font-weight:bold;
-  white-space:nowrap;
-}
+    .chapter-name {
+      font-size: 17px;
+      line-height: 1.4;
+    }
 
-.chapter-title{
-  font-size:17px;
-}
+    .arrow {
+      font-size: 25px;
+      color: #777;
+      margin-left: 10px;
+    }
 
-.reading{
-  background:white;
-  border-radius:16px;
-  padding:28px 22px;
-  box-shadow:0 4px 18px rgba(0,0,0,.07);
-}
+    .reading {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    }
 
-.reading h2{
-  font-size:30px;
-  line-height:1.3;
-  margin-top:8px;
-  color:#29213d;
-}
+    .chapter-label {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      color: #777;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
 
-.reading-content{
-  margin-top:25px;
-}
+    .chapter-title {
+      text-align: center;
+      font-size: 31px;
+      line-height: 1.3;
+      margin: 0 0 30px;
+    }
 
-.reading-paragraph{
-  margin-bottom:20px;
-  line-height:1.9;
-  font-size:18px;
-  color:#302b38;
-}
+    .introduction-title {
+      text-align: center;
+      font-size: 31px;
+      line-height: 1.3;
+      margin: 0 0 30px;
+    }
 
-.chapter-navigation{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin:25px 0 10px;
-  padding:18px 0;
-}
+    .content {
+      width: 100%;
+    }
 
-.nav-button{
-  background:#29213d;
-  color:white;
-  border:none;
-  border-radius:10px;
-  padding:12px 15px;
-  cursor:pointer;
-}
+    .content p {
+      font-size: 18px;
+      line-height: 1.85;
+      margin: 0 0 21px;
+    }
 
-.chapter-count{
-  color:#777;
-  font-size:14px;
-  white-space:nowrap;
-}
+    .content h3 {
+      font-size: 22px;
+      margin-top: 30px;
+    }
 
-.end-book{
-  color:#8b6b23;
-  font-size:14px;
-  text-align:center;
-}
+    .back-button {
+      background: #211a4c;
+      color: white;
+      text-align: center;
+      margin-bottom: 18px;
+    }
 
-.message{
-  text-align:center;
-  padding:40px 15px;
-  color:#6c6572;
-}
+    .back-button:hover {
+      background: #30266b;
+    }
 
-.loading{
-  text-align:center;
-  padding:40px;
-}
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 35px;
+      border-top: 1px solid #e5e0d5;
+      padding-top: 20px;
+    }
 
-@media(max-width:600px){
+    .nav-buttons button {
+      flex: 1;
+      text-align: center;
+    }
 
-  header h1{
-    font-size:26px;
-  }
+    .loading {
+      text-align: center;
+      padding: 60px 15px;
+      color: #777;
+      font-family: Arial, sans-serif;
+    }
 
-  .hero h2{
-    font-size:26px;
-  }
+    .error {
+      background: #fff0f0;
+      border: 1px solid #f0cccc;
+      color: #8d2222;
+      border-radius: 14px;
+      padding: 20px;
+      line-height: 1.7;
+      font-family: Arial, sans-serif;
+    }
 
-  .reading{
-    padding:23px 17px;
-  }
+    .empty-content {
+      text-align: center;
+      color: #777;
+      padding: 30px 10px;
+    }
 
-  .reading h2{
-    font-size:25px;
-  }
+    @media (max-width: 600px) {
 
-  .reading-paragraph{
-    font-size:17px;
-    line-height:1.85;
-  }
+      header {
+        padding: 23px 15px;
+      }
 
-  .chapter-navigation{
-    flex-wrap:wrap;
-  }
+      header h1 {
+        font-size: 27px;
+      }
 
-  .nav-button{
-    flex:1;
-  }
+      main {
+        padding: 16px 12px 45px;
+      }
 
-}
+      .card {
+        padding: 20px 16px;
+        border-radius: 15px;
+      }
 
-</style>
+      .book-title {
+        font-size: 25px;
+      }
+
+      .reading {
+        padding: 23px 16px;
+        border-radius: 15px;
+      }
+
+      .chapter-title,
+      .introduction-title {
+        font-size: 26px;
+      }
+
+      .content p {
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      .nav-buttons {
+        gap: 8px;
+      }
+
+      .nav-buttons button {
+        font-size: 14px;
+        padding: 13px 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <h1>Kṛṣṇa Verse</h1>
-  <p>Read • Learn • Remember Kṛṣṇa</p>
+  <p>Śrīla Prabhupāda's teachings</p>
 </header>
 
 <main id="app">
-
   <div class="loading">
-    Loading...
+    Loading Kṛṣṇa Book...
   </div>
-
 </main>
+
 
 <script>
 
-/* =========================
-   SUPABASE CONNECTION
-   ========================= */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-const SUPABASE_URL = "https://ffwzwoqixyenmgianbhc.supabase.co";
-
+const SUPABASE_URL = "Ymhttps://ffwzwoqixyenmgianbhc.supabase.co";
 const SUPABASE_KEY = "sb_publishable_PelAWcCcYnjnPqTa1GXfOw_WQgCWagU";
 
 const { createClient } = supabase;
@@ -266,318 +313,27 @@ const db = createClient(
 );
 
 
-/* =========================
-   MAIN APP
-   ========================= */
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
 
-const app = document.getElementById("app");
+let bookData = [];
+let currentChapterIndex = null;
 
 
-/* =========================
-   SECURITY / TEXT DISPLAY
-   ========================= */
+/* =========================================================
+   LOAD JSON BOOK CONTENT
+========================================================= */
 
-function escapeHTML(text){
+async function loadBook() {
 
-  if(text === null || text === undefined){
-    return "";
-  }
-
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-/* =========================
-   HOME PAGE
-   ========================= */
-
-async function showHome(){
-
-  app.innerHTML = `
-    <section class="hero">
-
-      <h2>Welcome to Kṛṣṇa Verse</h2>
-
-      <p>
-        Explore the teachings and transcendental pastimes
-        of Lord Kṛṣṇa.
-      </p>
-
-    </section>
-
-    <div id="books">
-      <div class="message">
-        Loading books...
-      </div>
-    </div>
-  `;
-
-  await loadBooks();
-}
-
-
-/* =========================
-   LOAD BOOKS
-   ========================= */
-
-async function loadBooks(){
-
-  const { data, error } = await db
-    .from("books")
-    .select("*")
-    .order("id");
-
-  const booksDiv = document.getElementById("books");
-
-  if(error){
-
-    booksDiv.innerHTML = `
-      <div class="message">
-        Could not load books.<br><br>
-        ${escapeHTML(error.message)}
-      </div>
-    `;
-
-    return;
-  }
-
-  if(!data || data.length === 0){
-
-    booksDiv.innerHTML = `
-      <div class="message">
-        No books available yet.
-      </div>
-    `;
-
-    return;
-  }
-
-  booksDiv.innerHTML = "";
-
-  data.forEach(book => {
-
-    booksDiv.innerHTML += `
-
-      <div
-        class="book-card"
-        onclick="openBook(${book.id})"
-      >
-
-        <h3>
-          ${escapeHTML(book.title)}
-        </h3>
-
-        ${
-          book.subtitle
-          ?
-          `<p>${escapeHTML(book.subtitle)}</p>`
-          :
-          ""
-        }
-
-        ${
-          book.description
-          ?
-          `<p>${escapeHTML(book.description)}</p>`
-          :
-          ""
-        }
-
-        <button class="button">
-          Open Book →
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-/* =========================
-   OPEN BOOK
-   ========================= */
-
-async function openBook(bookId){
-
-  app.innerHTML = `
-
-    <button
-      class="button back"
-      onclick="showHome()"
-    >
-      ← Books
-    </button>
-
-    <div class="message">
-      Loading chapters...
-    </div>
-
-  `;
-
-  const { data: book, error: bookError } = await db
-    .from("books")
-    .select("*")
-    .eq("id", bookId)
-    .single();
-
-  if(bookError){
-
-    app.innerHTML = `
-      <div class="message">
-        Could not load book.<br><br>
-        ${escapeHTML(bookError.message)}
-      </div>
-    `;
-
-    return;
-  }
-
-  const { data: chapters, error } = await db
-    .from("chapters")
-    .select("*")
-    .eq("book_id", bookId)
-    .order("chapter_number");
-
-  if(error){
-
-    app.innerHTML = `
-      <div class="message">
-        Could not load chapters.<br><br>
-        ${escapeHTML(error.message)}
-      </div>
-    `;
-
-    return;
-  }
-
-  let chapterHTML = "";
-
-  chapters.forEach(chapter => {
-
-    chapterHTML += `
-
-      <div
-        class="chapter"
-        onclick="openChapter(${chapter.id})"
-      >
-
-        <div class="chapter-number">
-          CHAPTER ${chapter.chapter_number}
-        </div>
-
-        <div class="chapter-title">
-          ${escapeHTML(
-            chapter.title_en ||
-            chapter.title
-          )}
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-  app.innerHTML = `
-
-    <button
-      class="button back"
-      onclick="showHome()"
-    >
-      ← Books
-    </button>
-
-    <div class="hero">
-
-      <h2>
-        ${escapeHTML(book.title)}
-      </h2>
-
-      <p>
-        90 Chapters
-      </p>
-
-    </div>
-
-    <div class="chapter-list">
-      ${chapterHTML}
-    </div>
-
-  `;
-
-}
-
-
-/* =========================
-   OPEN CHAPTER
-   ========================= */
-
-async function openChapter(chapterId){
-
-  app.innerHTML = `
-
-    <button
-      class="button back"
-      onclick="showBooks()"
-    >
-      ← Chapters
-    </button>
-
-    <div class="message">
-      Loading chapter...
-    </div>
-
-  `;
-
-
-  /* Get chapter information */
-
-  const { data: chapter, error } = await db
-    .from("chapters")
-    .select("*")
-    .eq("id", chapterId)
-    .single();
-
-
-  if(error){
-
-    app.innerHTML = `
-
-      <div class="message">
-
-        Unable to open chapter.
-
-        <br><br>
-
-        ${escapeHTML(error.message)}
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-
-  /* Load complete Kṛṣṇa Book JSON */
-
-  let bookData;
-
-  try{
+  try {
 
     const response = await fetch(
       "./krishna_chapters.json"
     );
 
-    if(!response.ok){
+    if (!response.ok) {
 
       throw new Error(
         "Could not load krishna_chapters.json"
@@ -585,21 +341,73 @@ async function openChapter(chapterId){
 
     }
 
-    bookData = await response.json();
+    const json = await response.json();
 
-  }
-  catch(error){
 
-    app.innerHTML = `
+    /*
+      Your JSON structure is:
 
-      <div class="message">
+      {
+        "book": {...},
+        "chapters": [...]
+      }
 
-        Book content could not be loaded.
+      Therefore we use json.chapters.
+    */
+
+    if (
+      !json ||
+      !Array.isArray(json.chapters)
+    ) {
+
+      throw new Error(
+        "Invalid JSON structure. The file must contain a chapters array."
+      );
+
+    }
+
+
+    bookData = json.chapters;
+
+
+    /* Make sure only Chapters 1–90 are used */
+
+    bookData = bookData
+      .filter(chapter => {
+
+        const number =
+          Number(chapter.chapter_number);
+
+        return number >= 1 && number <= 90;
+
+      })
+      .sort((a, b) => {
+
+        return (
+          Number(a.chapter_number) -
+          Number(b.chapter_number)
+        );
+
+      });
+
+
+    showHome();
+
+  } catch (error) {
+
+    document.getElementById("app").innerHTML = `
+
+      <div class="error">
+
+        <strong>
+          Book content could not be loaded.
+        </strong>
 
         <br><br>
 
-        Make sure <b>krishna_chapters.json</b>
-        is uploaded in the same folder as
+        Make sure
+        <b>krishna_chapters.json</b>
+        is uploaded in the same GitHub folder as
         <b>index.html</b>.
 
         <br><br>
@@ -610,316 +418,573 @@ async function openChapter(chapterId){
 
     `;
 
-    return;
   }
 
-
-  /* Find current chapter */
-
-  const currentNumber =
-    Number(chapter.chapter_number);
+}
 
 
-  const currentChapter =
-    bookData.chapters.find(
-      c =>
-        Number(c.chapter_number)
-        === currentNumber
-    );
+/* =========================================================
+   HOME / BOOK PAGE
+========================================================= */
 
+function showHome() {
 
-  if(!currentChapter){
+  document.getElementById("app").innerHTML = `
 
-    app.innerHTML = `
+    <div class="card">
 
-      <div class="message">
-
-        Chapter ${currentNumber}
-        was not found.
-
+      <div class="book-title">
+        Kṛṣṇa, the Supreme Personality of Godhead
       </div>
 
+      <div class="subtitle">
+        Kṛṣṇa Book
+      </div>
+
+      <div class="description">
+        The transcendental pastimes of Lord Kṛṣṇa.
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="showIntroduction()">
+
+        Read Introduction
+
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        Chapters
+      </h2>
+
+      <div id="chapterList"></div>
+
+    </div>
+
+  `;
+
+
+  const chapterList =
+    document.getElementById("chapterList");
+
+
+  if (bookData.length === 0) {
+
+    chapterList.innerHTML = `
+      <div class="empty-content">
+        No chapters found.
+      </div>
     `;
 
     return;
+
   }
 
 
-  /* Create reading content */
+  bookData.forEach(
+    (chapter, index) => {
 
-  let content = "";
+      const number =
+        chapter.chapter_number ||
+        index + 1;
+
+      const title =
+        chapter.title_en ||
+        chapter.title ||
+        `Chapter ${number}`;
 
 
-  currentChapter.paragraphs.forEach(
-    paragraph => {
+      chapterList.innerHTML += `
 
-      content += `
+        <button
+          class="chapter-button"
+          onclick="openChapter(${index})">
 
-        <p class="reading-paragraph">
-          ${escapeHTML(paragraph)}
-        </p>
+          <span class="chapter-info">
+
+            <span class="chapter-number">
+              Chapter ${number}
+            </span>
+
+            <span class="chapter-name">
+              ${escapeHTML(title)}
+            </span>
+
+          </span>
+
+          <span class="arrow">
+            ›
+          </span>
+
+        </button>
 
       `;
 
     }
   );
 
-
-  /* Previous chapter */
-
-  const previousChapter =
-    bookData.chapters.find(
-      c =>
-        Number(c.chapter_number)
-        === currentNumber - 1
-    );
+}
 
 
-  /* Next chapter */
+/* =========================================================
+   INTRODUCTION
+========================================================= */
 
-  const nextChapter =
-    bookData.chapters.find(
-      c =>
-        Number(c.chapter_number)
-        === currentNumber + 1
-    );
+function showIntroduction() {
 
-
-  /* Navigation */
-
-  let navigation = `
-
-    <div class="chapter-navigation">
-
-  `;
-
-
-  if(previousChapter){
-
-    navigation += `
-
-      <button
-        class="nav-button"
-        onclick="openChapterByNumber(
-          ${previousChapter.chapter_number}
-        )"
-      >
-
-        ← Chapter
-        ${previousChapter.chapter_number}
-
-      </button>
-
-    `;
-
-  }
-  else{
-
-    navigation += `
-
-      <button
-        class="nav-button"
-        onclick="showBooks()"
-      >
-
-        ← Chapters
-
-      </button>
-
-    `;
-
-  }
-
-
-  navigation += `
-
-    <div class="chapter-count">
-
-      ${currentNumber} / 90
-
-    </div>
-
-  `;
-
-
-  if(nextChapter){
-
-    navigation += `
-
-      <button
-        class="nav-button"
-        onclick="openChapterByNumber(
-          ${nextChapter.chapter_number}
-        )"
-      >
-
-        Chapter
-        ${nextChapter.chapter_number}
-        →
-
-      </button>
-
-    `;
-
-  }
-  else{
-
-    navigation += `
-
-      <div class="end-book">
-
-        End of Kṛṣṇa Book
-
-      </div>
-
-    `;
-
-  }
-
-
-  navigation += `
-
-    </div>
-
-  `;
-
-
-  /* Display chapter */
-
-  app.innerHTML = `
+  document.getElementById("app").innerHTML = `
 
     <button
-      class="button back"
-      onclick="showBooks()"
-    >
-      ← Chapters
+      class="back-button"
+      onclick="showHome()">
+
+      ← Back to Kṛṣṇa Book
+
     </button>
 
 
     <article class="reading">
 
-      <div class="chapter-number">
+      <h1 class="introduction-title">
+        Introduction
+      </h1>
 
-        CHAPTER ${currentNumber}
+
+      <div class="content">
+
+        <!--
+          INSERT THE EXACT INTRODUCTION TEXT
+          FROM THE KṚṢṆA BOOK HERE.
+
+          Do not add Dedication or Preface.
+        -->
+
+        <p>
+          The Introduction text will be placed here
+          from the Kṛṣṇa Book source.
+        </p>
 
       </div>
 
 
-      <h2>
+      <div class="nav-buttons">
 
-        ${escapeHTML(
-          currentChapter.title
-        )}
+        <button
+          onclick="openChapter(0)">
 
-      </h2>
+          Begin Chapter 1 →
 
-
-      <div class="reading-content">
-
-        ${content}
+        </button>
 
       </div>
 
     </article>
 
+  `;
 
-    ${navigation}
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =========================================================
+   OPEN CHAPTER
+========================================================= */
+
+function openChapter(index) {
+
+  if (
+    index < 0 ||
+    index >= bookData.length
+  ) {
+
+    return;
+
+  }
+
+
+  currentChapterIndex = index;
+
+
+  const chapter =
+    bookData[index];
+
+
+  const number =
+    chapter.chapter_number ||
+    index + 1;
+
+
+  const title =
+    chapter.title_en ||
+    chapter.title ||
+    `Chapter ${number}`;
+
+
+  let paragraphs = [];
+
+
+  /* -------------------------------------------------------
+     JSON FORMAT 1
+     chapter.paragraphs
+  ------------------------------------------------------- */
+
+  if (
+    Array.isArray(
+      chapter.paragraphs
+    )
+  ) {
+
+    paragraphs =
+      chapter.paragraphs;
+
+  }
+
+
+  /* -------------------------------------------------------
+     JSON FORMAT 2
+     chapter.sections
+  ------------------------------------------------------- */
+
+  else if (
+    Array.isArray(
+      chapter.sections
+    )
+  ) {
+
+    chapter.sections.forEach(
+      section => {
+
+        if (
+          Array.isArray(
+            section.paragraphs
+          )
+        ) {
+
+          paragraphs.push(
+            ...section.paragraphs
+          );
+
+        }
+
+        else if (
+          section.content_en
+        ) {
+
+          paragraphs.push(
+            section.content_en
+          );
+
+        }
+
+        else if (
+          section.content
+        ) {
+
+          paragraphs.push(
+            section.content
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* -------------------------------------------------------
+     JSON FORMAT 3
+     chapter.content
+  ------------------------------------------------------- */
+
+  else if (
+    chapter.content
+  ) {
+
+    paragraphs = [
+      chapter.content
+    ];
+
+  }
+
+
+  /* =======================================================
+     CREATE READING CONTENT
+  ======================================================= */
+
+  let contentHTML = "";
+
+
+  if (
+    paragraphs.length === 0
+  ) {
+
+    contentHTML = `
+
+      <div class="empty-content">
+
+        Reading content will be added here.
+
+      </div>
+
+    `;
+
+  }
+
+  else {
+
+    paragraphs.forEach(
+      paragraph => {
+
+        if (
+          paragraph === null ||
+          paragraph === undefined ||
+          String(paragraph).trim() === ""
+        ) {
+
+          return;
+
+        }
+
+
+        contentHTML += `
+
+          <p>
+            ${escapeHTML(
+              String(paragraph)
+            )}
+          </p>
+
+        `;
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     PREVIOUS BUTTON
+  ======================================================= */
+
+  let previousButton = "";
+
+
+  if (index > 0) {
+
+    previousButton = `
+
+      <button
+        onclick="openChapter(${index - 1})">
+
+        ← Previous
+
+      </button>
+
+    `;
+
+  }
+
+  else {
+
+    /*
+      Chapter 1 goes back to Introduction.
+    */
+
+    previousButton = `
+
+      <button
+        onclick="showIntroduction()">
+
+        ← Introduction
+
+      </button>
+
+    `;
+
+  }
+
+
+  /* =======================================================
+     NEXT BUTTON
+  ======================================================= */
+
+  let nextButton = "";
+
+
+  if (
+    index <
+    bookData.length - 1
+  ) {
+
+    nextButton = `
+
+      <button
+        onclick="openChapter(${index + 1})">
+
+        Next →
+
+      </button>
+
+    `;
+
+  }
+
+  else {
+
+    /*
+      Chapter 90 is the final chapter.
+
+      Nothing after Chapter 90.
+    */
+
+    nextButton = `
+
+      <button
+        onclick="showHome()">
+
+        Back to Chapters
+
+      </button>
+
+    `;
+
+  }
+
+
+  /* =======================================================
+     DISPLAY CHAPTER
+  ======================================================= */
+
+  document.getElementById("app").innerHTML = `
+
+    <button
+      class="back-button"
+      onclick="showHome()">
+
+      ← Back to Chapters
+
+    </button>
+
+
+    <article class="reading">
+
+      <div class="chapter-label">
+
+        Chapter ${number}
+
+      </div>
+
+
+      <h1 class="chapter-title">
+
+        ${escapeHTML(title)}
+
+      </h1>
+
+
+      <div class="content">
+
+        ${contentHTML}
+
+      </div>
+
+
+      <div class="nav-buttons">
+
+        ${previousButton}
+
+        ${nextButton}
+
+      </div>
+
+    </article>
 
   `;
 
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
 }
 
 
-/* =========================
+/* =========================================================
    OPEN CHAPTER BY NUMBER
-   ========================= */
+========================================================= */
 
-async function openChapterByNumber(
-  chapterNumber
-){
+function openChapterByNumber(number) {
 
-  const { data: book, error: bookError } =
-    await db
-      .from("books")
-      .select("id")
-      .eq(
-        "title",
-        "Kṛṣṇa, the Supreme Personality of Godhead"
-      )
-      .single();
+  const index =
+    bookData.findIndex(
+      chapter =>
+        Number(
+          chapter.chapter_number
+        ) === Number(number)
+    );
 
 
-  if(bookError){
+  if (index !== -1) {
 
-    alert("Could not find the Kṛṣṇa Book.");
+    openChapter(index);
 
-    return;
   }
-
-
-  const { data: chapter, error } =
-    await db
-      .from("chapters")
-      .select("id")
-      .eq(
-        "book_id",
-        book.id
-      )
-      .eq(
-        "chapter_number",
-        chapterNumber
-      )
-      .single();
-
-
-  if(error){
-
-    alert("Could not open chapter.");
-
-    return;
-  }
-
-
-  openChapter(chapter.id);
 
 }
 
 
-/* =========================
-   SHOW CHAPTERS
-   ========================= */
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
 
-async function showBooks(){
+function escapeHTML(text) {
 
-  const { data: book, error } =
-    await db
-      .from("books")
-      .select("*")
-      .eq(
-        "title",
-        "Kṛṣṇa, the Supreme Personality of Godhead"
-      )
-      .single();
+  return String(text)
 
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-  if(error){
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-    showHome();
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-    return;
-  }
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-
-  openBook(book.id);
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
    START WEBSITE
-   ========================= */
+========================================================= */
 
-showHome();
+loadBook();
 
 </script>
 
