@@ -9,7 +9,59 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
+.reading-paragraph{
+  margin-bottom:20px;
+  line-height:1.9;
+  font-size:18px;
+  color:#302b38;
+}
+
+.chapter-navigation{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:25px 0 10px;
+  padding:18px 0;
+}
+
+.nav-button{
+  background:#29213d;
+  color:white;
+  border:none;
+  border-radius:10px;
+  padding:12px 15px;
+  cursor:pointer;
+}
+
+.chapter-count{
+  color:#777;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.end-book{
+  color:#8b6b23;
+  font-size:14px;
+  text-align:center;
+}
+
+@media(max-width:600px){
+
+  .reading-paragraph{
+    font-size:17px;
+    line-height:1.85;
+  }
+
+  .chapter-navigation{
+    flex-wrap:wrap;
+  }
+
+  .nav-button{
+    flex:1;
+  }
+
+}*{
   box-sizing:border-box;
   margin:0;
   padding:0;
