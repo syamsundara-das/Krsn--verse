@@ -1,186 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kṛṣṇa Verse</title>
+<title>Kṛṣṇa Verse</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-      font-family: Georgia, serif;
-      background: #faf7f0;
-      color: #29213d;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    header {
-      padding: 28px 20px;
-      text-align: center;
-      background: #29213d;
-      color: #f5d98b;
-    }
+body{
+  font-family:Georgia,serif;
+  background:#faf7f0;
+  color:#29213d;
+}
 
-    header h1 {
-      font-size: 32px;
-      margin-bottom: 6px;
-    }
+header{
+  padding:30px 20px;
+  text-align:center;
+  background:#29213d;
+  color:#f5d98b;
+}
 
-    header p {
-      color: #f8f1dc;
-      font-size: 14px;
-    }
+header h1{
+  font-size:34px;
+  margin-bottom:6px;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 14px;
-      background: white;
-      border-bottom: 1px solid #ddd;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+header p{
+  color:#f8f1dc;
+  font-size:15px;
+}
 
-    nav a {
-      text-decoration: none;
-      color: #29213d;
-      font-size: 14px;
-    }
+nav{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  padding:15px;
+  background:white;
+  border-bottom:1px solid #ddd;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
 
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 30px 18px;
-    }
+nav a{
+  text-decoration:none;
+  color:#29213d;
+  font-size:14px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 45px 15px;
-    }
+main{
+  max-width:900px;
+  margin:auto;
+  padding:25px 18px;
+}
 
-    .hero h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
+.hero{
+  text-align:center;
+  padding:45px 15px;
+}
 
-    .hero p {
-      color: #666;
-      line-height: 1.6;
-    }
+.hero h2{
+  font-size:31px;
+  margin-bottom:15px;
+}
 
-    .section-title {
-      margin: 30px 0 15px;
-      font-size: 24px;
-    }
+.hero p{
+  color:#666;
+  line-height:1.7;
+}
 
-    .book-card {
-      background: white;
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 15px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.section-title{
+  margin:30px 0 15px;
+  font-size:24px;
+}
 
-    .book-card:hover {
-      transform: translateY(-2px);
-    }
+.book-card,
+.chapter-card{
+  background:white;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:14px;
+  box-shadow:0 3px 15px rgba(0,0,0,.07);
+}
 
-    .book-card h3 {
-      margin-bottom: 8px;
-    }
+.book-card h3,
+.chapter-card h3{
+  margin-bottom:8px;
+}
 
-    .book-card p {
-      color: #777;
-      font-size: 14px;
-    }
+.book-card p{
+  color:#777;
+  font-size:14px;
+}
 
-    .button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 11px 18px;
-      background: #29213d;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-    }
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:11px 18px;
+  background:#29213d;
+  color:white;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-size:15px;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      margin-top: 40px;
-      color: #777;
-      font-size: 13px;
-    }
-  </style>
+.back{
+  margin-bottom:20px;
+}
+
+.chapter-number{
+  color:#8b6b23;
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.reading{
+  background:white;
+  border-radius:16px;
+  padding:25px;
+  line-height:1.9;
+  box-shadow:0 3px 15px rgba(0,0,0,.07);
+}
+
+.reading h2{
+  margin-bottom:18px;
+}
+
+.message{
+  text-align:center;
+  padding:35px 15px;
+  color:#666;
+}
+
+footer{
+  text-align:center;
+  padding:35px;
+  margin-top:40px;
+  color:#777;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>कृष्ण Verse</h1>
-    <p>Read • Learn • Remember</p>
-  </header>
+<header>
+  <h1>Kṛṣṇa Verse</h1>
+  <p>Read • Learn • Remember</p>
+</header>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#books">Books</a>
-    <a href="#games">Games</a>
-    <a href="#search">Search</a>
-  </nav>
+<nav>
+  <a href="#" onclick="showHome()">Home</a>
+  <a href="#" onclick="showBooks()">Books</a>
+  <a href="#games">Games</a>
+  <a href="#search">Search</a>
+</nav>
 
-  <main>
+<main id="app">
+  <div class="message">Loading Kṛṣṇa Verse...</div>
+</main>
 
-    <section class="hero" id="home">
+<footer>
+  Hare Kṛṣṇa 🙏<br>
+  Kṛṣṇa Verse
+</footer>
+
+<script>
+
+/* =====================================
+   SUPABASE CONNECTION
+   ===================================== */
+
+const SUPABASE_URL = "https://ffwzwoqixyenmgianbhc.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_PelAWcCcYnjnPqTa1GXfOw_WQgCWagU";
+
+const { createClient } = supabase;
+
+const db = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =====================================
+   APP
+   ===================================== */
+
+const app = document.getElementById("app");
+
+let krishnaBook = null;
+
+
+/* HOME */
+
+function showHome(){
+
+  app.innerHTML = `
+    <section class="hero">
       <h2>Welcome to Kṛṣṇa Verse</h2>
+
       <p>
         A devotional library for reading, learning and remembering
         the teachings and pastimes of Lord Kṛṣṇa.
       </p>
     </section>
 
-    <h2 class="section-title" id="books">📚 Books</h2>
+    <h2 class="section-title">📚 Books</h2>
 
-    <div class="book-card">
-      <h3>Kṛṣṇa, the Supreme Personality of Godhead</h3>
-      <p>90 chapters • Kṛṣṇa Book</p>
-      <button class="button" onclick="openBook()">
-        Open Book
-      </button>
+    <div id="books">
+      <div class="message">Loading books...</div>
     </div>
+  `;
 
-    <h2 class="section-title" id="games">🎮 Games</h2>
+  loadBooks();
+}
 
-    <div class="book-card">
-      <h3>Coming Soon</h3>
+
+/* LOAD BOOKS */
+
+async function loadBooks(){
+
+  const { data, error } = await db
+    .from("books")
+    .select("*")
+    .order("id");
+
+  if(error){
+
+    app.innerHTML += `
+      <div class="message">
+        Unable to load books.<br><br>
+        ${error.message}
+      </div>
+    `;
+
+    return;
+  }
+
+  const booksContainer = document.getElementById("books");
+
+  if(!data || data.length === 0){
+
+    booksContainer.innerHTML =
+      `<div class="message">No books added yet.</div>`;
+
+    return;
+  }
+
+  booksContainer.innerHTML = "";
+
+  data.forEach(book => {
+
+    booksContainer.innerHTML += `
+      <div class="book-card">
+
+        <h3>${escapeHTML(book.title)}</h3>
+
+        <p>
+          ${escapeHTML(book.subtitle || "")}
+        </p>
+
+        <button
+          class="button"
+          onclick="openBook(${book.id})">
+          Open Book
+        </button>
+
+      </div>
+    `;
+  });
+}
+
+
+/* OPEN BOOK */
+
+async function openBook(bookId){
+
+  app.innerHTML = `
+    <button class="button back" onclick="showHome()">
+      ← Back
+    </button>
+
+    <h2 class="section-title">
+      Chapters
+    </h2>
+
+    <div class="message">
+      Loading chapters...
+    </div>
+  `;
+
+  const { data, error } = await db
+    .from("chapters")
+    .select("*")
+    .eq("book_id", bookId)
+    .order("chapter_number");
+
+  if(error){
+
+    app.innerHTML += `
+      <div class="message">
+        Error loading chapters:<br>
+        ${error.message}
+      </div>
+    `;
+
+    return;
+  }
+
+  if(!data || data.length === 0){
+
+    app.innerHTML += `
+      <div class="message">
+        No chapters found.
+      </div>
+    `;
+
+    return;
+  }
+
+  let html = `
+    <button class="button back" onclick="showHome()">
+      ← Back
+    </button>
+
+    <h2 class="section-title">
+      Kṛṣṇa Book
+    </h2>
+  `;
+
+  data.forEach(chapter => {
+
+    const title =
+      chapter.title_en ||
+      chapter.title ||
+      "Untitled Chapter";
+
+    html += `
+      <div class="chapter-card">
+
+        <div class="chapter-number">
+          CHAPTER ${chapter.chapter_number}
+        </div>
+
+        <h3>${escapeHTML(title)}</h3>
+
+        <button
+          class="button"
+          onclick="openChapter(${chapter.id})">
+          Read Chapter
+        </button>
+
+      </div>
+    `;
+  });
+
+  app.innerHTML = html;
+}
+
+
+/* OPEN CHAPTER */
+
+async function openChapter(chapterId){
+
+  app.innerHTML = `
+    <button class="button back" onclick="history.back()">
+      ← Back
+    </button>
+
+    <div class="message">
+      Loading chapter...
+    </div>
+  `;
+
+  const { data: chapter, error: chapterError } =
+    await db
+      .from("chapters")
+      .select("*")
+      .eq("id", chapterId)
+      .single();
+
+  if(chapterError){
+
+    app.innerHTML += `
+      <div class="message">
+        ${chapterError.message}
+      </div>
+    `;
+
+    return;
+  }
+
+  const { data: sections, error: sectionError } =
+    await db
+      .from("sections")
+      .select("*")
+      .eq("chapter_id", chapterId)
+      .order("section_number");
+
+  let content = "";
+
+  if(!sectionError && sections && sections.length > 0){
+
+    sections.forEach(section => {
+
+      const text =
+        section.content_en || "";
+
+      if(text){
+
+        content += `
+          <p style="margin-bottom:20px;">
+            ${escapeHTML(text)}
+          </p>
+        `;
+      }
+    });
+  }
+
+  if(!content){
+
+    content = `
       <p>
-        Chapter quizzes, character games, līlā challenges
-        and more.
+        The chapter structure is ready.
       </p>
+
+      <p style="margin-top:15px;color:#777;">
+        Reading content will be added here.
+      </p>
+    `;
+  }
+
+  const title =
+    chapter.title_en ||
+    chapter.title ||
+    "Chapter";
+
+  app.innerHTML = `
+
+    <button
+      class="button back"
+      onclick="showBooks()">
+      ← Chapters
+    </button>
+
+    <div class="reading">
+
+      <div class="chapter-number">
+        CHAPTER ${chapter.chapter_number}
+      </div>
+
+      <h2>
+        ${escapeHTML(title)}
+      </h2>
+
+      ${content}
+
     </div>
+  `;
+}
 
-  </main>
 
-  <footer>
-    Hare Kṛṣṇa 🙏<br>
-    Kṛṣṇa Verse
-  </footer>
+/* BOOKS PAGE */
 
-  <script>
-    function openBook() {
-      alert("Kṛṣṇa Book — Chapters 1–90");
-    }
-  </script>
+function showBooks(){
+
+  showHome();
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  if(value === null || value === undefined){
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* START */
+
+showHome();
+
+</script>
 
 </body>
 </html>
