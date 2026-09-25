@@ -8,503 +8,445 @@
 
 <style>
 
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f7f3ec;
+  color:#2d241d;
 }
 
-body {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  background: #f7f3ea;
-  color: #211f2b;
+header{
+  padding:22px 18px;
+  background:#fffaf2;
+  border-bottom:1px solid #eadfce;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-/* ================= HEADER ================= */
-
-header {
-  background: linear-gradient(135deg, #17133b, #2c2462);
-  color: white;
-  padding: 25px 16px 22px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 30px;
+header h1{
+  margin:0;
+  font-size:25px;
 }
 
-header p {
-  margin: 6px 0 0;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  opacity: .82;
+header p{
+  margin:5px 0 0;
+  color:#75685c;
+  font-size:13px;
 }
-
-/* ================= MAIN ================= */
 
-main {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 20px 15px 90px;
+.page{
+  display:none;
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  padding-bottom:90px;
 }
 
-/* ================= CARDS ================= */
-
-.card,
-.reading,
-.game-card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 24px;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+#homePage{
+  display:block;
 }
 
-.book-title {
-  font-size: 29px;
-  line-height: 1.3;
-  margin-bottom: 8px;
+.hero{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:18px;
+  border:1px solid #eadfce;
 }
 
-.subtitle {
-  color: #777;
-  font-size: 16px;
-  margin-bottom: 20px;
+.hero h2{
+  margin-top:0;
+  font-size:28px;
 }
 
-.description {
-  color: #555;
-  line-height: 1.7;
-  margin-bottom: 20px;
+.hero p{
+  line-height:1.6;
+  color:#65594e;
 }
 
-h2 {
-  margin-top: 0;
-  font-size: 23px;
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
-
-/* ================= BUTTONS ================= */
 
-button {
-  width: 100%;
-  border: none;
-  border-radius: 13px;
-  padding: 14px 15px;
-  margin: 5px 0;
-  background: #eee9dc;
-  color: #25222d;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 16px;
-  cursor: pointer;
-  transition: .18s;
+.menu-card{
+  background:white;
+  padding:18px;
+  border-radius:17px;
+  border:1px solid #eadfce;
+  cursor:pointer;
 }
 
-button:hover {
-  background: #e3dccd;
-  transform: translateY(-1px);
+.menu-card:active{
+  transform:scale(.98);
 }
 
-.primary-button {
-  background: #211a4c;
-  color: white;
+.menu-card .icon{
+  font-size:25px;
 }
 
-.primary-button:hover {
-  background: #30266b;
+.menu-card h3{
+  margin:9px 0 5px;
 }
 
-.secondary-button {
-  background: #ddd5f2;
-  color: #241b4e;
+.menu-card p{
+  margin:0;
+  color:#75685c;
+  font-size:13px;
 }
 
-.danger-button {
-  background: #f3dddd;
-  color: #7c2020;
+.section-title{
+  margin:25px 0 12px;
 }
 
-/* ================= CHAPTERS ================= */
-
-.chapter-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-  gap: 10px;
+.chapter-card,
+.game-chapter-card,
+.progress-chapter{
+  background:#fff;
+  border:1px solid #eadfce;
+  border-radius:17px;
+  padding:16px;
+  margin-bottom:10px;
 }
 
-.chapter-info {
-  display: block;
+.chapter-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  cursor:pointer;
 }
 
-.chapter-number {
-  display: block;
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 4px;
+.chapter-number{
+  min-width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#f1e4d0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
 }
 
-.chapter-name {
-  display: block;
-  font-size: 17px;
-  line-height: 1.4;
+.chapter-info{
+  flex:1;
 }
 
-.chapter-status {
-  font-size: 18px;
-  color: #4d7654;
+.chapter-info h3{
+  margin:0 0 5px;
+  font-size:16px;
 }
-
-/* ================= CONTINUE ================= */
 
-.continue-card {
-  background: linear-gradient(135deg,#f0ebff,#faf8ff);
-  border: 1px solid #ddd5f2;
+.chapter-info p{
+  margin:0;
+  color:#81766c;
+  font-size:13px;
 }
 
-.continue-label {
-  font-family: Arial,sans-serif;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  color: #71658d;
+.page-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
 }
 
-.continue-title {
-  font-size: 21px;
-  margin: 7px 0;
+.page-header h2{
+  margin:0;
 }
 
-.small-text {
-  color: #777;
-  font-family: Arial,sans-serif;
-  font-size: 13px;
+.page-header p{
+  margin:4px 0 0;
+  color:#81766c;
+  font-size:13px;
 }
 
-/* ================= READING ================= */
-
-.reading {
-  padding: 28px 22px;
+.back-btn{
+  border:0;
+  background:white;
+  border:1px solid #eadfce;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
 }
 
-.chapter-label {
-  text-align: center;
-  font-family: Arial,sans-serif;
-  font-size: 13px;
-  letter-spacing: 1.8px;
-  color: #777;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+.primary-btn,
+.secondary-btn{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:10px;
 }
 
-.chapter-title,
-.introduction-title {
-  text-align: center;
-  font-size: 31px;
-  line-height: 1.3;
-  margin: 0 0 28px;
+.primary-btn{
+  background:#6d4225;
+  color:white;
 }
 
-.content p {
-  font-size: 18px;
-  line-height: 1.85;
-  margin: 0 0 21px;
+.secondary-btn{
+  background:#eee5d8;
+  color:#3b2c20;
 }
-
-/* ================= NAV ================= */
 
-.back-button {
-  background: #211a4c;
-  color: white;
-  margin-bottom: 16px;
+.book-card{
+  background:white;
+  border:1px solid #eadfce;
+  border-radius:20px;
+  padding:20px;
 }
 
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 35px;
-  border-top: 1px solid #e5e0d5;
-  padding-top: 20px;
+.book-card h2{
+  margin-top:0;
 }
 
-.nav-buttons button {
-  flex: 1;
+.book-card p{
+  line-height:1.8;
+  color:#43382f;
 }
 
-/* ================= TOOLS ================= */
-
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 10px;
+.intro-card{
+  background:#fff;
+  border:1px solid #eadfce;
+  border-radius:20px;
+  padding:22px;
+  line-height:1.8;
 }
 
-.tool-button {
-  min-height: 95px;
-  text-align: left;
-  padding: 16px;
+.reader-tools{
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
 }
 
-.tool-icon {
-  display: block;
-  font-size: 25px;
-  margin-bottom: 8px;
+.reader-tools button{
+  flex:1;
+  padding:11px;
+  border:1px solid #eadfce;
+  background:#fff;
+  border-radius:11px;
+  cursor:pointer;
 }
 
-.tool-title {
-  display: block;
-  font-size: 16px;
+#searchInput{
+  width:100%;
+  padding:14px;
+  border-radius:13px;
+  border:1px solid #ddd0c0;
+  outline:none;
+  font-size:15px;
+  margin-bottom:15px;
 }
 
-.tool-desc {
-  display: block;
-  color: #777;
-  font-family: Arial,sans-serif;
-  font-size: 11px;
-  line-height: 1.4;
+.remove-bookmark{
+  border:0;
+  background:none;
+  font-size:17px;
+  cursor:pointer;
 }
-
-/* ================= SEARCH ================= */
 
-.search-box {
-  width: 100%;
-  padding: 15px;
-  border-radius: 13px;
-  border: 1px solid #ddd6c9;
-  background: white;
-  font-family: Arial,sans-serif;
-  font-size: 16px;
-  outline: none;
-  margin-bottom: 12px;
+.game-chapter-card{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  cursor:pointer;
 }
 
-.search-result {
-  padding: 15px;
-  border-radius: 13px;
-  background: #f6f2ea;
-  margin-bottom: 8px;
-  cursor: pointer;
+.game-chapter-icon{
+  font-size:27px;
 }
 
-.result-number {
-  color: #777;
-  font-size: 12px;
-  margin-bottom: 4px;
+.game-chapter-card h3{
+  margin:0 0 5px;
 }
 
-.result-title {
-  font-size: 17px;
+.game-chapter-card p{
+  margin:0 0 6px;
+  color:#6f6257;
+  font-size:14px;
 }
 
-.result-snippet {
-  color: #666;
-  font-family: Arial,sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-  margin-top: 6px;
+.game-chapter-card small{
+  color:#8b6a49;
 }
 
-/* ================= BOOKMARK ================= */
-
-.bookmark-button {
-  background: #eee9dc;
-  color: #33294f;
+.game-card,
+.result-card{
+  background:white;
+  border:1px solid #eadfce;
+  border-radius:20px;
+  padding:20px;
 }
 
-.bookmark-active {
-  background: #e4d9fa;
-  color: #35205e;
+.game-progress{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  color:#76695e;
 }
-
-/* ================= GAMES ================= */
 
-.game-card {
-  padding: 22px;
+.progress-bar{
+  width:100%;
+  height:7px;
+  background:#eee5d9;
+  border-radius:20px;
+  margin:12px 0 25px;
+  overflow:hidden;
 }
 
-.game-name {
-  font-size: 24px;
-  margin: 0 0 8px;
+#gameProgressBar{
+  height:100%;
+  width:0;
+  background:#8b5b36;
+  transition:.3s;
 }
 
-.game-question {
-  font-size: 20px;
-  line-height: 1.6;
-  margin: 20px 0;
+#questionText{
+  line-height:1.5;
+  margin-bottom:18px;
 }
 
-.answer-button {
-  text-align: left;
-  background: #f1ede4;
+.answer-btn{
+  width:100%;
+  text-align:left;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #dfd2c3;
+  border-radius:12px;
+  background:#fff;
+  cursor:pointer;
 }
 
-.answer-button.correct {
-  background: #dcebdd;
+.answer-btn.correct{
+  background:#dfeedd;
+  border-color:#71966a;
 }
 
-.answer-button.wrong {
-  background: #f0dada;
+.answer-btn.wrong{
+  background:#f3dddd;
+  border-color:#b56d6d;
 }
 
-.game-info {
-  background: #f4effd;
-  border-left: 4px solid #68559a;
-  padding: 13px;
-  border-radius: 8px;
-  line-height: 1.6;
-  margin: 15px 0;
+.result-card{
+  text-align:center;
 }
 
-.game-score {
-  display: flex;
-  gap: 8px;
+.result-icon{
+  font-size:45px;
 }
 
-.score-item {
-  flex: 1;
-  background: #f5f1e9;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
+.result-stats,
+.progress-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
 }
 
-.score-number {
-  display: block;
-  font-size: 22px;
+.stat-card,
+.result-stats div{
+  background:#f7f1e8;
+  padding:16px 8px;
+  border-radius:14px;
+  text-align:center;
 }
 
-.score-label {
-  color: #777;
-  font-family: Arial,sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
+.stat-card strong,
+.result-stats strong{
+  display:block;
+  font-size:22px;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  border-radius: 20px;
-  background: #e7e1d6;
-  overflow: hidden;
-  margin: 10px 0;
+.stat-card span,
+.result-stats span{
+  display:block;
+  margin-top:5px;
+  font-size:11px;
+  color:#776b60;
 }
 
-.progress-fill {
-  height: 100%;
-  background: #5b4a8a;
-  transition: width .3s;
+.progress-chapter{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.memory-tip {
-  background: #f4effd;
-  border-left: 4px solid #68559a;
-  padding: 13px;
-  border-radius: 8px;
-  color: #4c4165;
-  line-height: 1.6;
-  margin-top: 15px;
+.progress-chapter p{
+  margin:5px 0 0;
+  color:#75685c;
+  font-size:13px;
 }
 
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255,255,255,.97);
-  border-top: 1px solid #ddd7cb;
-  display: flex;
-  justify-content: center;
-  z-index: 200;
-  padding: 7px 5px;
+.progress-chapter span{
+  font-size:12px;
+  white-space:nowrap;
 }
 
-.bottom-nav button {
-  max-width: 120px;
-  background: transparent;
-  margin: 0;
-  padding: 7px 5px;
-  font-family: Arial,sans-serif;
-  font-size: 11px;
-  color: #555;
+.empty-state{
+  text-align:center;
+  background:white;
+  border:1px solid #eadfce;
+  border-radius:18px;
+  padding:35px 20px;
 }
 
-.bottom-icon {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 2px;
+.empty-icon{
+  font-size:40px;
 }
 
-/* ================= EMPTY / ERROR ================= */
-
-.empty-content {
-  text-align: center;
-  color: #777;
-  padding: 30px 10px;
-  line-height: 1.6;
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid #eadfce;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:30;
 }
 
-.loading {
-  text-align: center;
-  padding: 60px 15px;
-  color: #777;
-  font-family: Arial,sans-serif;
+.bottom-nav button{
+  border:0;
+  background:white;
+  padding:10px 4px;
+  cursor:pointer;
+  color:#66594e;
+  font-size:12px;
 }
 
-.error {
-  background: #fff0f0;
-  border: 1px solid #f0cccc;
-  color: #8d2222;
-  border-radius: 14px;
-  padding: 20px;
-  line-height: 1.7;
-  font-family: Arial,sans-serif;
+.bottom-nav span{
+  display:block;
+  font-size:20px;
+  margin-bottom:2px;
 }
-
-/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
-  header h1 {
-    font-size:27px;
+  .page{
+    padding:15px;
+    padding-bottom:85px;
   }
 
-  main {
-    padding:16px 12px 85px;
+  .hero h2{
+    font-size:24px;
   }
 
-  .card,
-  .reading,
-  .game-card {
-    padding:20px 16px;
-    border-radius:15px;
+  .menu-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .book-title {
-    font-size:25px;
-  }
-
-  .chapter-title,
-  .introduction-title {
-    font-size:26px;
-  }
-
-  .content p {
-    font-size:17px;
-    line-height:1.8;
-  }
-
-  .game-question {
-    font-size:18px;
+  .progress-summary,
+  .result-stats{
+    grid-template-columns:repeat(3,1fr);
   }
 
 }
@@ -512,967 +454,276 @@ button:hover {
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
-  <h1>Kṛṣṇa Verse</h1>
-
-  <p>
-    Śrīla Prabhupāda's teachings
-  </p>
-
+  <h1>🪷 Kṛṣṇa Verse</h1>
+  <p>Kṛṣṇa Book • Read • Remember • Realize</p>
 </header>
 
 
-<main id="app">
+<!-- ================= HOME ================= -->
 
-  <div class="loading">
-    Loading Kṛṣṇa Book...
+<section id="homePage" class="page">
+
+  <div class="hero">
+
+    <h2>Hare Kṛṣṇa 🙏</h2>
+
+    <p>
+      Welcome to Kṛṣṇa Verse — a simple place to read
+      Śrīla Prabhupāda's Kṛṣṇa Book, remember the chapters,
+      and test what you have learned.
+    </p>
+
+    <button class="primary-btn" onclick="showIntroduction()">
+      Start Reading
+    </button>
+
   </div>
 
-</main>
 
+  <div class="menu-grid">
 
-<!-- ================= BOTTOM NAV ================= -->
-
-<div class="bottom-nav">
-
-  <button onclick="showHome()">
-    <span class="bottom-icon">⌂</span>
-    Home
-  </button>
-
-  <button onclick="showSearch()">
-    <span class="bottom-icon">⌕</span>
-    Search
-  </button>
-
-  <button onclick="showBookmarks()">
-    <span class="bottom-icon">🔖</span>
-    Saved
-  </button>
-
-  <button onclick="showGames()">
-    <span class="bottom-icon">🎮</span>
-    Games
-  </button>
-
-  <button onclick="showProgress()">
-    <span class="bottom-icon">📊</span>
-    Progress
-  </button>
-
-</div>
-
-
-<script>
-
-/* =========================================================
-   DATA
-========================================================= */
-
-let bookData = [];
-
-let currentChapterIndex = null;
-
-let gameState = null;
-
-
-/* =========================================================
-   USER DATA
-========================================================= */
-
-const STORAGE_KEY =
-  "krishnaVerseLearningData";
-
-
-let userData = {
-
-  bookmarks: [],
-
-  completed: [],
-
-  lastChapter: null,
-
-  xp: 0,
-
-  totalAnswers: 0,
-
-  correctAnswers: 0,
-
-  chapterGameScores: {}
-
-};
-
-
-function loadUserData(){
-
-  try{
-
-    const saved =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-
-    if(saved){
-
-      userData = {
-        ...userData,
-        ...JSON.parse(saved)
-      };
-
-    }
-
-  }catch(error){
-
-    console.log(error);
-
-  }
-
-}
-
-
-function saveUserData(){
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(userData)
-  );
-
-}
-
-
-/* =========================================================
-   LOAD BOOK
-========================================================= */
-
-async function loadBook(){
-
-  loadUserData();
-
-  try{
-
-    const response =
-      await fetch(
-        "./krishna_chapters.json"
-      );
-
-    if(!response.ok){
-
-      throw new Error(
-        "Could not load krishna_chapters.json"
-      );
-
-    }
-
-
-    const json =
-      await response.json();
-
-
-    if(
-      !json ||
-      !Array.isArray(json.chapters)
-    ){
-
-      throw new Error(
-        "Invalid JSON structure."
-      );
-
-    }
-
-
-    bookData =
-      json.chapters
-      .filter(chapter => {
-
-        const number =
-          Number(
-            chapter.chapter_number
-          );
-
-        return number >= 1 &&
-               number <= 90;
-
-      })
-      .sort((a,b) =>
-        Number(a.chapter_number) -
-        Number(b.chapter_number)
-      );
-
-
-    showHome();
-
-
-  }catch(error){
-
-    document.getElementById(
-      "app"
-    ).innerHTML = `
-
-      <div class="error">
-
-        <b>Book content could not be loaded.</b>
-
-        <br><br>
-
-        Make sure
-        <b>krishna_chapters.json</b>
-        is in the same folder as
-        <b>index.html</b>.
-
-        <br><br>
-
-        ${escapeHTML(error.message)}
-
-      </div>
-
-    `;
-
-  }
-
-}
-
-
-/* =========================================================
-   HOME
-========================================================= */
-
-function showHome(){
-
-  if(!bookData.length) return;
-
-
-  let continueHTML = "";
-
-
-  if(
-    userData.lastChapter !== null &&
-    bookData[userData.lastChapter]
-  ){
-
-    const chapter =
-      bookData[userData.lastChapter];
-
-
-    const number =
-      chapter.chapter_number;
-
-
-    const title =
-      chapter.title_en ||
-      chapter.title ||
-      `Chapter ${number}`;
-
-
-    continueHTML = `
-
-      <div class="card continue-card">
-
-        <div class="continue-label">
-          Continue Reading
-        </div>
-
-        <div class="continue-title">
-
-          Chapter ${number}:
-          ${escapeHTML(title)}
-
-        </div>
-
-        <div class="small-text">
-          Continue from where you stopped.
-        </div>
-
-        <button
-          class="primary-button"
-          onclick="openChapter(${userData.lastChapter})">
-
-          Continue Reading →
-
-        </button>
-
-      </div>
-
-    `;
-
-  }
-
-
-  const completed =
-    userData.completed.length;
-
-
-  const percent =
-    Math.round(
-      completed /
-      bookData.length *
-      100
-    );
-
-
-  let chaptersHTML = "";
-
-
-  bookData.forEach(
-    (chapter,index)=>{
-
-      const number =
-        Number(
-          chapter.chapter_number
-        );
-
-
-      const title =
-        chapter.title_en ||
-        chapter.title ||
-        `Chapter ${number}`;
-
-
-      const done =
-        userData.completed
-        .includes(number);
-
-
-      chaptersHTML += `
-
-        <button
-          class="chapter-button"
-          onclick="openChapter(${index})">
-
-          <span class="chapter-info">
-
-            <span class="chapter-number">
-              Chapter ${number}
-            </span>
-
-            <span class="chapter-name">
-              ${escapeHTML(title)}
-            </span>
-
-          </span>
-
-          <span class="chapter-status">
-
-            ${done ? "✓" : "›"}
-
-          </span>
-
-        </button>
-
-      `;
-
-    }
-  );
-
-
-  document.getElementById(
-    "app"
-  ).innerHTML = `
-
-    ${continueHTML}
-
-    <div class="card">
-
-      <div class="book-title">
-        Kṛṣṇa, the Supreme Personality of Godhead
-      </div>
-
-      <div class="subtitle">
-        Kṛṣṇa Book
-      </div>
-
-      <div class="description">
-        The transcendental pastimes of Lord Kṛṣṇa.
-      </div>
-
-      <button
-        class="primary-button"
-        onclick="showIntroduction()">
-
-        Read Introduction
-
-      </button>
-
+    <div class="menu-card" onclick="showSearch()">
+      <div class="icon">🔍</div>
+      <h3>Search</h3>
+      <p>Find a chapter quickly</p>
     </div>
 
-
-    <div class="card">
-
-      <h2>
-        Your Journey
-      </h2>
-
-      <div class="small-text">
-
-        ${completed}
-        of
-        ${bookData.length}
-        chapters completed
-
-      </div>
-
-      <div class="progress-bar">
-
-        <div
-          class="progress-fill"
-          style="width:${percent}%">
-        </div>
-
-      </div>
-
-      <div class="small-text">
-        ${percent}% completed
-      </div>
-
+    <div class="menu-card" onclick="showBookmarks()">
+      <div class="icon">🔖</div>
+      <h3>Bookmarks</h3>
+      <p>Your saved chapters</p>
     </div>
 
-
-    <div class="card">
-
-      <h2>
-        Learn
-      </h2>
-
-      <div class="tool-grid">
-
-        <button
-          class="tool-button"
-          onclick="showSearch()">
-
-          <span class="tool-icon">
-            🔍
-          </span>
-
-          <span class="tool-title">
-            Search
-          </span>
-
-          <span class="tool-desc">
-            Search all chapters.
-          </span>
-
-        </button>
-
-
-        <button
-          class="tool-button"
-          onclick="showBookmarks()">
-
-          <span class="tool-icon">
-            🔖
-          </span>
-
-          <span class="tool-title">
-            Bookmarks
-          </span>
-
-          <span class="tool-desc">
-            Save chapters.
-          </span>
-
-        </button>
-
-
-        <button
-          class="tool-button"
-          onclick="showGames()">
-
-          <span class="tool-icon">
-            🎮
-          </span>
-
-          <span class="tool-title">
-            Games
-          </span>
-
-          <span class="tool-desc">
-            Practice chapter memory.
-          </span>
-
-        </button>
-
-
-        <button
-          class="tool-button"
-          onclick="showProgress()">
-
-          <span class="tool-icon">
-            📊
-          </span>
-
-          <span class="tool-title">
-            Progress
-          </span>
-
-          <span class="tool-desc">
-            See your learning.
-          </span>
-
-        </button>
-
-      </div>
-
+    <div class="menu-card" onclick="showGames()">
+      <div class="icon">🎮</div>
+      <h3>Games</h3>
+      <p>Test your memory</p>
     </div>
 
-
-    <div class="card">
-
-      <h2>
-        Chapters
-      </h2>
-
-      ${chaptersHTML}
-
+    <div class="menu-card" onclick="showProgress()">
+      <div class="icon">📊</div>
+      <h3>Progress</h3>
+      <p>See your journey</p>
     </div>
 
-  `;
-
-}
+  </div>
 
 
-/* =========================================================
-   INTRODUCTION
-========================================================= */
+  <h3 class="section-title">📖 Kṛṣṇa Book</h3>
 
-function showIntroduction(){
+  <div id="homeChapterList"></div>
 
-  document.getElementById(
-    "app"
-  ).innerHTML = `
+</section>
 
-    <button
-      class="back-button"
-      onclick="showHome()">
 
-      ← Back to Kṛṣṇa Book
+<!-- ================= INTRODUCTION ================= -->
 
+<section id="introductionPage" class="page">
+
+  <div class="page-header">
+
+    <button class="back-btn" onclick="showHome()">←</button>
+
+    <div>
+      <h2>Introduction</h2>
+      <p>Before Chapter 1</p>
+    </div>
+
+  </div>
+
+
+  <div class="intro-card">
+
+    <h2>Kṛṣṇa — The Supreme Personality of Godhead</h2>
+
+    <p>
+      This Kṛṣṇa Book presents the transcendental activities
+      and pastimes of Lord Śrī Kṛṣṇa, as explained through
+      the teachings of the Vedic literature and the disciplic
+      succession.
+    </p>
+
+    <p>
+      As we read, the purpose is not simply to finish chapters.
+      We can hear about Kṛṣṇa with attention, remember His
+      qualities and pastimes, and gradually develop our
+      attraction to hearing and chanting His holy name.
+    </p>
+
+    <p>
+      Read slowly, try to remember the important events,
+      and revisit chapters whenever necessary.
+    </p>
+
+    <button class="primary-btn" onclick="openChapterByNumber(1)">
+      Begin Chapter 1 →
     </button>
 
+  </div>
 
-    <article class="reading">
+</section>
 
-      <h1 class="introduction-title">
-        Introduction
-      </h1>
 
+<!-- ================= SEARCH ================= -->
 
-      <div class="content">
+<section id="searchPage" class="page">
 
-        <!--
-        PUT YOUR EXACT INTRODUCTION TEXT HERE.
-        -->
+  <div class="page-header">
 
-        <p>
-          The Introduction text will be placed here
-          from the Kṛṣṇa Book source.
-        </p>
+    <button class="back-btn" onclick="showHome()">←</button>
 
-      </div>
+    <div>
+      <h2>🔍 Search</h2>
+      <p>Find chapters from Kṛṣṇa Book</p>
+    </div>
 
+  </div>
 
-      <div class="nav-buttons">
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="Search chapter title..."
+    oninput="searchChapters()"
+  >
 
-        <button
-          onclick="openChapter(0)">
+  <div id="searchResults"></div>
 
-          Begin Chapter 1 →
+</section>
 
-        </button>
 
-      </div>
+<!-- ================= READER ================= -->
 
-    </article>
+<section id="readerPage" class="page">
 
-  `;
+  <div class="page-header">
 
-  window.scrollTo(0,0);
+    <button class="back-btn" onclick="showHome()">←</button>
 
-}
+    <div>
+      <h2 id="readerChapterNumber"></h2>
+      <p id="readerChapterTitle"></p>
+    </div>
 
+  </div>
 
-/* =========================================================
-   GET PARAGRAPHS
-========================================================= */
 
-function getParagraphs(chapter){
+  <div class="reader-tools">
 
-  let paragraphs = [];
-
-
-  if(
-    Array.isArray(
-      chapter.paragraphs
-    )
-  ){
-
-    paragraphs =
-      chapter.paragraphs;
-
-  }
-
-  else if(
-    Array.isArray(
-      chapter.sections
-    )
-  ){
-
-    chapter.sections.forEach(
-      section=>{
-
-        if(
-          Array.isArray(
-            section.paragraphs
-          )
-        ){
-
-          paragraphs.push(
-            ...section.paragraphs
-          );
-
-        }
-
-        else if(
-          section.content_en
-        ){
-
-          paragraphs.push(
-            section.content_en
-          );
-
-        }
-
-        else if(
-          section.content
-        ){
-
-          paragraphs.push(
-            section.content
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-  else if(
-    chapter.content
-  ){
-
-    paragraphs = [
-      chapter.content
-    ];
-
-  }
-
-
-  return paragraphs
-    .filter(
-      x =>
-        x !== null &&
-        x !== undefined &&
-        String(x).trim()
-    )
-    .map(x => String(x));
-
-}
-
-
-/* =========================================================
-   OPEN CHAPTER
-========================================================= */
-
-function openChapter(index){
-
-  if(
-    index < 0 ||
-    index >= bookData.length
-  ){
-
-    return;
-
-  }
-
-
-  currentChapterIndex =
-    index;
-
-
-  userData.lastChapter =
-    index;
-
-
-  saveUserData();
-
-
-  const chapter =
-    bookData[index];
-
-
-  const number =
-    Number(
-      chapter.chapter_number
-    );
-
-
-  const title =
-    chapter.title_en ||
-    chapter.title ||
-    `Chapter ${number}`;
-
-
-  const paragraphs =
-    getParagraphs(
-      chapter
-    );
-
-
-  let contentHTML = "";
-
-
-  paragraphs.forEach(
-    paragraph => {
-
-      contentHTML += `
-
-        <p>
-          ${escapeHTML(paragraph)}
-        </p>
-
-      `;
-
-    }
-  );
-
-
-  if(!contentHTML){
-
-    contentHTML = `
-
-      <div class="empty-content">
-
-        No reading content found.
-
-      </div>
-
-    `;
-
-  }
-
-
-  const bookmarked =
-    userData.bookmarks
-    .includes(number);
-
-
-  const previous =
-    index === 0
-      ? `
-
-        <button
-          onclick="showIntroduction()">
-
-          ← Introduction
-
-        </button>
-
-      `
-      : `
-
-        <button
-          onclick="openChapter(${index-1})">
-
-          ← Previous
-
-        </button>
-
-      `;
-
-
-  const next =
-    index <
-    bookData.length-1
-      ? `
-
-        <button
-          onclick="openChapter(${index+1})">
-
-          Next →
-
-        </button>
-
-      `
-      : `
-
-        <button
-          onclick="showHome()">
-
-          Back to Chapters
-
-        </button>
-
-      `;
-
-
-  document.getElementById(
-    "app"
-  ).innerHTML = `
-
-    <button
-      class="back-button"
-      onclick="showHome()">
-
-      ← Back to Chapters
-
+    <button id="bookmarkBtn"
+            onclick="toggleCurrentBookmark()">
+      🔖 Bookmark
     </button>
 
+    <button onclick="startCurrentGame()">
+      🎮 Game
+    </button>
 
-    <article class="reading">
-
-      <div class="chapter-label">
-        Chapter ${number}
-      </div>
-
-
-      <h1 class="chapter-title">
-
-        ${escapeHTML(title)}
-
-      </h1>
+  </div>
 
 
-      <button
-        class="bookmark-button
-        ${bookmarked ? "bookmark-active" : ""}"
-        onclick="toggleBookmark(${number})">
+  <div class="book-card">
 
-        ${
-          bookmarked
-          ? "🔖 Remove Bookmark"
-          : "🔖 Bookmark Chapter"
-        }
+    <h2 id="readerTitle"></h2>
 
-      </button>
+    <div id="readerContent"></div>
+
+  </div>
+
+</section>
 
 
-      <button
-        class="secondary-button"
-        onclick="startChapterGames(${index})">
-
-        🎮 Play Chapter ${number} Games
-
-      </button>
-
-
-      <div class="content">
-
-        ${contentHTML}
-
-      </div>
-
-
-      <button
-        class="secondary-button"
-        onclick="markCompleted(${number})">
-
-        ${
-          userData.completed.includes(number)
-          ? "✓ Chapter Completed"
-          : "✓ Mark Chapter as Completed"
-        }
-
-      </button>
-
-
-      <div class="nav-buttons">
-
-        ${previous}
-
-        ${next}
-
-      </div>
-
-    </article>
-
-  `;
-
-
-  window.scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   BOOKMARK
-========================================================= */
 <!-- ================= BOOKMARKS ================= -->
 
 <section id="bookmarksPage" class="page">
+
   <div class="page-header">
+
     <button class="back-btn" onclick="showHome()">←</button>
+
     <div>
       <h2>🔖 Bookmarks</h2>
       <p>Your saved chapters</p>
     </div>
+
   </div>
 
   <div id="bookmarkList"></div>
+
 </section>
 
 
 <!-- ================= GAMES ================= -->
 
 <section id="gamesPage" class="page">
+
   <div class="page-header">
+
     <button class="back-btn" onclick="showHome()">←</button>
+
     <div>
       <h2>🎮 Chapter Games</h2>
       <p>Play and remember what you read</p>
     </div>
+
   </div>
 
   <div id="gameChapterList"></div>
-</section>
 
-
-<!-- ================= GAME SCREEN ================= -->
+</section> 
+  <!-- ================= GAME SCREEN ================= -->
 
 <section id="gameScreen" class="page">
 
   <div class="page-header">
+
     <button class="back-btn" onclick="showGames()">←</button>
+
     <div>
       <h2 id="gameTitle">Chapter Game</h2>
       <p id="gameSubtitle"></p>
     </div>
+
   </div>
+
 
   <div class="game-card">
 
     <div class="game-progress">
-      <span id="questionNumber">Question 1</span>
-      <span id="gameScore">Score: 0</span>
+
+      <span id="questionNumber">
+        Question 1
+      </span>
+
+      <span id="gameScore">
+        Score: 0
+      </span>
+
     </div>
 
+
     <div class="progress-bar">
+
       <div id="gameProgressBar"></div>
+
     </div>
+
 
     <h3 id="questionText"></h3>
 
     <div id="answers"></div>
+
 
     <button
       id="nextQuestionBtn"
       class="primary-btn"
       onclick="nextQuestion()"
       style="display:none;">
+
       Next →
+
     </button>
 
   </div>
@@ -1492,7 +743,9 @@ function openChapter(index){
 
     <p id="resultText"></p>
 
+
     <div class="result-stats">
+
       <div>
         <strong id="finalScore">0</strong>
         <span>Score</span>
@@ -1507,7 +760,9 @@ function openChapter(index){
         <strong id="finalXP">0</strong>
         <span>XP</span>
       </div>
+
     </div>
+
 
     <button class="primary-btn" onclick="showGames()">
       Play Another Chapter
@@ -1527,13 +782,16 @@ function openChapter(index){
 <section id="progressPage" class="page">
 
   <div class="page-header">
+
     <button class="back-btn" onclick="showHome()">←</button>
 
     <div>
       <h2>📊 My Progress</h2>
       <p>Your Kṛṣṇa Book journey</p>
     </div>
+
   </div>
+
 
   <div class="progress-summary">
 
@@ -1554,6 +812,7 @@ function openChapter(index){
 
   </div>
 
+
   <div class="progress-section">
 
     <h3>📖 Chapter Progress</h3>
@@ -1565,109 +824,407 @@ function openChapter(index){
 </section>
 
 
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <button onclick="showHome()">
+    <span>🏠</span>
+    Home
+  </button>
+
+  <button onclick="showSearch()">
+    <span>🔍</span>
+    Search
+  </button>
+
+  <button onclick="showBookmarks()">
+    <span>🔖</span>
+    Saved
+  </button>
+
+  <button onclick="showProgress()">
+    <span>📊</span>
+    Progress
+  </button>
+
+</nav>
+
+
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
 let bookData = [];
+
 let currentChapter = null;
 
-let currentGame = null;
-let currentQuestion = 0;
-let currentScore = 0;
 let gameQuestions = [];
 
+let currentQuestion = 0;
 
-// ---------- STORAGE ----------
+let currentScore = 0;
+
+
+// ================= STORAGE =================
 
 function getBookmarks(){
-  return JSON.parse(localStorage.getItem("krishnaBookmarks") || "[]");
+
+  return JSON.parse(
+    localStorage.getItem("krishnaBookmarks") || "[]"
+  );
+
 }
+
 
 function saveBookmarks(data){
-  localStorage.setItem("krishnaBookmarks", JSON.stringify(data));
+
+  localStorage.setItem(
+    "krishnaBookmarks",
+    JSON.stringify(data)
+  );
+
 }
+
 
 function getProgress(){
-  return JSON.parse(localStorage.getItem("krishnaProgress") || "{}");
+
+  return JSON.parse(
+    localStorage.getItem("krishnaProgress") || "{}"
+  );
+
 }
+
 
 function saveProgress(data){
-  localStorage.setItem("krishnaProgress", JSON.stringify(data));
+
+  localStorage.setItem(
+    "krishnaProgress",
+    JSON.stringify(data)
+  );
+
 }
+
 
 function getGameStats(){
-  return JSON.parse(localStorage.getItem("krishnaGameStats") || 
-  '{"played":0,"xp":0}');
+
+  return JSON.parse(
+    localStorage.getItem("krishnaGameStats") ||
+    '{"played":0,"xp":0}'
+  );
+
 }
+
 
 function saveGameStats(data){
-  localStorage.setItem("krishnaGameStats", JSON.stringify(data));
+
+  localStorage.setItem(
+    "krishnaGameStats",
+    JSON.stringify(data)
+  );
+
 }
 
 
-// ---------- PAGE CONTROL ----------
+// ================= PAGE CONTROL =================
 
 function hidePages(){
 
   document.querySelectorAll(".page").forEach(page=>{
+
     page.style.display = "none";
+
   });
 
 }
+
 
 function showHome(){
 
   hidePages();
 
-  const home = document.getElementById("homePage");
-
-  if(home) home.style.display = "block";
+  document.getElementById(
+    "homePage"
+  ).style.display = "block";
 
 }
+
+
+function showIntroduction(){
+
+  hidePages();
+
+  document.getElementById(
+    "introductionPage"
+  ).style.display = "block";
+
+}
+
+
+function showSearch(){
+
+  hidePages();
+
+  document.getElementById(
+    "searchPage"
+  ).style.display = "block";
+
+  searchChapters();
+
+}
+
 
 function showBookmarks(){
 
   hidePages();
 
-  document.getElementById("bookmarksPage").style.display = "block";
+  document.getElementById(
+    "bookmarksPage"
+  ).style.display = "block";
 
   renderBookmarks();
 
 }
 
+
 function showGames(){
 
   hidePages();
 
-  document.getElementById("gamesPage").style.display = "block";
+  document.getElementById(
+    "gamesPage"
+  ).style.display = "block";
 
   renderGameChapters();
 
 }
 
+
 function showProgress(){
 
   hidePages();
 
-  document.getElementById("progressPage").style.display = "block";
+  document.getElementById(
+    "progressPage"
+  ).style.display = "block";
 
   renderProgress();
 
 }
 
 
-// ---------- BOOKMARKS ----------
+// ================= CHAPTER HELPERS =================
 
-function toggleBookmark(chapterNumber){
+function getChapterNumber(chapter){
 
-  let bookmarks = getBookmarks();
+  return Number(
+    chapter.chapter ||
+    chapter.number ||
+    0
+  );
 
-  const index = bookmarks.indexOf(Number(chapterNumber));
+}
+
+
+function getChapterTitle(chapter){
+
+  return (
+    chapter.title ||
+    chapter.name ||
+    `Chapter ${getChapterNumber(chapter)}`
+  );
+
+}
+
+
+function getChapterText(chapter){
+
+  if(typeof chapter.text === "string"){
+    return chapter.text;
+  }
+
+  if(typeof chapter.content === "string"){
+    return chapter.content;
+  }
+
+  if(Array.isArray(chapter.paragraphs)){
+    return chapter.paragraphs.join("\n\n");
+  }
+
+  if(Array.isArray(chapter.content)){
+    return chapter.content.join("\n\n");
+  }
+
+  return "";
+
+}
+
+
+// ================= HOME CHAPTERS =================
+
+function renderHomeChapters(){
+
+  const container =
+    document.getElementById(
+      "homeChapterList"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    bookData.map(chapter=>{
+
+      const number =
+        getChapterNumber(chapter);
+
+      const title =
+        getChapterTitle(chapter);
+
+      return `
+
+        <div class="chapter-card"
+             onclick="openChapterByNumber(${number})">
+
+          <div class="chapter-number">
+            ${number}
+          </div>
+
+          <div class="chapter-info">
+
+            <h3>
+              ${escapeHTML(title)}
+            </h3>
+
+            <p>
+              Read Chapter ${number} →
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+// ================= OPEN CHAPTER =================
+
+function openChapterByNumber(number){
+
+  const chapter =
+    bookData.find(
+      c => getChapterNumber(c) === Number(number)
+    );
+
+  if(!chapter) return;
+
+  currentChapter = chapter;
+
+  hidePages();
+
+  document.getElementById(
+    "readerPage"
+  ).style.display = "block";
+
+
+  const chapterNumber =
+    getChapterNumber(chapter);
+
+  const title =
+    getChapterTitle(chapter);
+
+  document.getElementById(
+    "readerChapterNumber"
+  ).innerText =
+    `Chapter ${chapterNumber}`;
+
+  document.getElementById(
+    "readerChapterTitle"
+  ).innerText =
+    title;
+
+  document.getElementById(
+    "readerTitle"
+  ).innerText =
+    title;
+
+
+  const text =
+    getChapterText(chapter);
+
+
+  const content =
+    document.getElementById(
+      "readerContent"
+    );
+
+
+  if(!text){
+
+    content.innerHTML =
+      "<p>Chapter content not found.</p>";
+
+  }else{
+
+    content.innerHTML =
+      text
+        .split(/\n\s*\n/)
+        .map(paragraph =>
+          `<p>${escapeHTML(paragraph)}</p>`
+        )
+        .join("");
+
+  }
+
+
+  updateBookmarkButton();
+
+  markChapterRead(chapterNumber);
+
+}
+
+
+function markChapterRead(number){
+
+  const progress =
+    getProgress();
+
+  progress[number] = true;
+
+  saveProgress(progress);
+
+}
+
+
+// ================= BOOKMARK =================
+
+function toggleCurrentBookmark(){
+
+  if(!currentChapter) return;
+
+  toggleBookmark(
+    getChapterNumber(currentChapter)
+  );
+
+}
+
+
+function toggleBookmark(number){
+
+  let bookmarks =
+    getBookmarks();
+
+  number = Number(number);
+
+  const index =
+    bookmarks.indexOf(number);
 
   if(index === -1){
 
-    bookmarks.push(Number(chapterNumber));
+    bookmarks.push(number);
 
   }else{
 
@@ -1677,28 +1234,37 @@ function toggleBookmark(chapterNumber){
 
   saveBookmarks(bookmarks);
 
-  updateBookmarkButton(chapterNumber);
+  updateBookmarkButton();
 
   renderBookmarks();
 
 }
 
 
-function updateBookmarkButton(chapterNumber){
+function updateBookmarkButton(){
 
-  const btn = document.getElementById("bookmarkBtn");
+  const button =
+    document.getElementById(
+      "bookmarkBtn"
+    );
 
-  if(!btn) return;
+  if(!button || !currentChapter) return;
 
-  const bookmarks = getBookmarks();
+  const bookmarks =
+    getBookmarks();
 
-  if(bookmarks.includes(Number(chapterNumber))){
+  const number =
+    getChapterNumber(currentChapter);
 
-    btn.innerHTML = "🔖 Saved";
+  if(bookmarks.includes(number)){
+
+    button.innerText =
+      "🔖 Saved";
 
   }else{
 
-    btn.innerHTML = "🔖 Bookmark";
+    button.innerText =
+      "🔖 Bookmark";
 
   }
 
@@ -1707,199 +1273,301 @@ function updateBookmarkButton(chapterNumber){
 
 function renderBookmarks(){
 
-  const container = document.getElementById("bookmarkList");
+  const container =
+    document.getElementById(
+      "bookmarkList"
+    );
 
   if(!container) return;
 
-  const bookmarks = getBookmarks();
+  const bookmarks =
+    getBookmarks();
+
 
   if(bookmarks.length === 0){
 
     container.innerHTML = `
+
       <div class="empty-state">
-        <div class="empty-icon">🔖</div>
-        <h3>No bookmarks yet</h3>
-        <p>Save chapters here so you can easily return to them.</p>
+
+        <div class="empty-icon">
+          🔖
+        </div>
+
+        <h3>
+          No bookmarks yet
+        </h3>
+
+        <p>
+          Save chapters while reading
+          and they will appear here.
+        </p>
+
       </div>
+
     `;
 
     return;
+
   }
 
-  container.innerHTML = bookmarks.map(number=>{
 
-    const chapter = bookData.find(
-      c => Number(c.chapter || c.number) === Number(number)
+  container.innerHTML =
+    bookmarks.map(number=>{
+
+      const chapter =
+        bookData.find(
+          c => getChapterNumber(c) === number
+        );
+
+      if(!chapter) return "";
+
+      return `
+
+        <div class="chapter-card"
+             onclick="openChapterByNumber(${number})">
+
+          <div class="chapter-number">
+            ${number}
+          </div>
+
+          <div class="chapter-info">
+
+            <h3>
+              ${escapeHTML(
+                getChapterTitle(chapter)
+              )}
+            </h3>
+
+            <p>
+              Continue reading →
+            </p>
+
+          </div>
+
+          <button
+            class="remove-bookmark"
+            onclick="
+              event.stopPropagation();
+              toggleBookmark(${number})
+            ">
+            ✕
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+// ================= SEARCH =================
+
+function searchChapters(){
+
+  const input =
+    document.getElementById(
+      "searchInput"
     );
 
-    if(!chapter) return "";
+  const container =
+    document.getElementById(
+      "searchResults"
+    );
 
-    const title =
-      chapter.title ||
-      chapter.name ||
-      `Chapter ${number}`;
+  if(!input || !container) return;
 
-    return `
+  const query =
+    input.value
+      .trim()
+      .toLowerCase();
 
-      <div class="chapter-card"
-           onclick="openChapterByNumber(${number})">
 
-        <div class="chapter-number">
-          ${number}
-        </div>
+  const results =
+    bookData.filter(chapter=>{
 
-        <div class="chapter-info">
+      const title =
+        getChapterTitle(chapter)
+          .toLowerCase();
 
-          <h3>${escapeHTML(title)}</h3>
+      const number =
+        String(
+          getChapterNumber(chapter)
+        );
 
-          <p>📖 Continue reading</p>
+      return (
+        !query ||
+        title.includes(query) ||
+        number.includes(query)
+      );
 
-        </div>
+    });
 
-        <button
-          class="remove-bookmark"
-          onclick="event.stopPropagation(); toggleBookmark(${number})">
-          ✕
-        </button>
+
+  if(results.length === 0){
+
+    container.innerHTML = `
+
+      <div class="empty-state">
+
+        <h3>
+          No chapter found
+        </h3>
+
+        <p>
+          Try another chapter name or number.
+        </p>
 
       </div>
 
     `;
 
-  }).join("");
+    return;
+
+  }
+
+
+  container.innerHTML =
+    results.map(chapter=>{
+
+      const number =
+        getChapterNumber(chapter);
+
+      return `
+
+        <div class="chapter-card"
+             onclick="openChapterByNumber(${number})">
+
+          <div class="chapter-number">
+            ${number}
+          </div>
+
+          <div class="chapter-info">
+
+            <h3>
+              ${escapeHTML(
+                getChapterTitle(chapter)
+              )}
+            </h3>
+
+            <p>
+              Open chapter →
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
 
 }
 
 
-// ---------- READING PROGRESS ----------
-
-function markChapterRead(chapterNumber){
-
-  const progress = getProgress();
-
-  progress[chapterNumber] = true;
-
-  saveProgress(progress);
-
-}
-
-
-// ---------- GAMES ----------
+// ================= GAMES =================
 
 function renderGameChapters(){
 
-  const container = document.getElementById("gameChapterList");
+  const container =
+    document.getElementById(
+      "gameChapterList"
+    );
 
   if(!container) return;
 
-  if(!bookData.length){
 
-    container.innerHTML = `
-      <div class="empty-state">
-        <p>Loading chapters...</p>
-      </div>
-    `;
+  container.innerHTML =
+    bookData.map(chapter=>{
 
-    return;
-  }
+      const number =
+        getChapterNumber(chapter);
 
-  container.innerHTML = bookData.map(chapter=>{
+      return `
 
-    const number =
-      Number(chapter.chapter || chapter.number);
+        <div class="game-chapter-card"
+             onclick="startChapterGame(${number})">
 
-    const title =
-      chapter.title ||
-      chapter.name ||
-      `Chapter ${number}`;
+          <div class="game-chapter-icon">
+            🎮
+          </div>
 
-    return `
+          <div>
 
-      <div class="game-chapter-card"
-           onclick="startChapterGame(${number})">
+            <h3>
+              Chapter ${number}
+            </h3>
 
-        <div class="game-chapter-icon">
-          🎮
-        </div>
+            <p>
+              ${escapeHTML(
+                getChapterTitle(chapter)
+              )}
+            </p>
 
-        <div>
+            <small>
+              Test your memory →
+            </small>
 
-          <h3>Chapter ${number}</h3>
-
-          <p>${escapeHTML(title)}</p>
-
-          <small>Test your memory →</small>
+          </div>
 
         </div>
 
-      </div>
+      `;
 
-    `;
-
-  }).join("");
+    }).join("");
 
 }
 
 
-// ---------- CREATE QUESTIONS ----------
+// ================= QUESTIONS =================
 
 function createQuestions(chapter){
 
-  const title =
-    chapter.title ||
-    chapter.name ||
-    `Chapter ${chapter.chapter}`;
-
-  let text = "";
-
-  if(typeof chapter.text === "string"){
-    text = chapter.text;
-  }
-
-  if(Array.isArray(chapter.paragraphs)){
-    text = chapter.paragraphs.join(" ");
-  }
-
-  if(!text && typeof chapter.content === "string"){
-    text = chapter.content;
-  }
-
   const questions = [];
 
-  // Question 1 — chapter identity
+  const title =
+    getChapterTitle(chapter);
+
+  const text =
+    getChapterText(chapter);
+
 
   questions.push({
 
     question:
-      `What is the title of Chapter ${chapter.chapter}?`,
+      `What is the title of Chapter ${getChapterNumber(chapter)}?`,
 
     answer:title,
 
-    options:[
+    options:shuffle([
       title,
-      "The Appearance of Śrī Caitanya Mahāprabhu",
+      "The Appearance of Lord Caitanya",
       "The Battle of Kurukṣetra",
       "The Science of Self-Realization"
-    ]
+    ])
 
   });
 
 
-  // Text-based questions
-
-  if(text){
-
-    const sentences = text
+  const sentences =
+    text
       .replace(/\s+/g," ")
       .split(/[.!?]+/)
       .map(x=>x.trim())
-      .filter(x=>x.length > 60);
+      .filter(x=>x.length > 50);
 
-    sentences.slice(0,4).forEach(sentence=>{
 
-      const words = sentence.split(" ");
+  sentences
+    .slice(0,4)
+    .forEach(sentence=>{
+
+      const words =
+        sentence.split(" ");
 
       if(words.length < 8) return;
+
 
       const index =
         Math.floor(words.length / 2);
@@ -1908,35 +1576,34 @@ function createQuestions(chapter){
         words[index]
           .replace(/[,:;"'()]/g,"");
 
+
       if(answer.length < 4) return;
 
-      const hidden =
-        words[index].replace(
-          /[A-Za-zÀ-ž]/g,
-          "_"
+
+      const questionWords =
+        words.map((word,i)=>
+          i === index
+            ? "____"
+            : word
         );
+
 
       questions.push({
 
         question:
-          `Remember the chapter: ${words
-            .map((word,i)=>
-              i === index ? "____" : word
-            )
-            .join(" ")}`,
+          questionWords.join(" "),
 
         answer:answer,
 
-        options:makeOptions(
-          answer,
-          words
-        )
+        options:
+          makeOptions(
+            answer,
+            words
+          )
 
       });
 
     });
-
-  }
 
 
   return questions.slice(0,5);
@@ -1944,32 +1611,47 @@ function createQuestions(chapter){
 }
 
 
-function makeOptions(correct, words){
+function makeOptions(correct,words){
 
-  const options = [correct];
+  const options =
+    [correct];
 
-  const possible = words
-    .map(w=>w.replace(/[,:;"'()]/g,""))
-    .filter(w=>
-      w.length >= 4 &&
-      w.toLowerCase() !== correct.toLowerCase()
-    );
+  const possible =
+    words
+      .map(w =>
+        w.replace(
+          /[,:;"'()]/g,
+          ""
+        )
+      )
+      .filter(w =>
+        w.length >= 4 &&
+        w.toLowerCase() !==
+        correct.toLowerCase()
+      );
 
-  for(let word of possible){
+
+  for(const word of possible){
 
     if(options.length >= 4) break;
 
     if(!options.includes(word)){
+
       options.push(word);
+
     }
 
   }
 
+
   while(options.length < 4){
 
-    options.push("Not mentioned");
+    options.push(
+      "Not mentioned"
+    );
 
   }
+
 
   return shuffle(options);
 
@@ -1979,49 +1661,82 @@ function makeOptions(correct, words){
 function shuffle(array){
 
   return array
-    .map(value=>({value,sort:Math.random()}))
+    .map(value=>({
+      value,
+      sort:Math.random()
+    }))
     .sort((a,b)=>a.sort-b.sort)
-    .map(({value})=>value);
+    .map(item=>item.value);
 
 }
 
 
-// ---------- START GAME ----------
+// ================= START GAME =================
 
-function startChapterGame(chapterNumber){
+function startCurrentGame(){
 
-  const chapter = bookData.find(
-    c => Number(c.chapter || c.number) === Number(chapterNumber)
+  if(!currentChapter) return;
+
+  startChapterGame(
+    getChapterNumber(currentChapter)
   );
+
+}
+
+
+function startChapterGame(number){
+
+  const chapter =
+    bookData.find(
+      c => getChapterNumber(c) === Number(number)
+    );
 
   if(!chapter) return;
 
-  currentChapter = chapter;
+  currentChapter =
+    chapter;
 
-  gameQuestions = createQuestions(chapter);
+  gameQuestions =
+    createQuestions(chapter);
 
   currentQuestion = 0;
+
   currentScore = 0;
+
 
   hidePages();
 
-  document.getElementById("gameScreen").style.display = "block";
+  document.getElementById(
+    "gameScreen"
+  ).style.display = "block";
 
-  document.getElementById("gameTitle").innerText =
-    `Chapter ${chapterNumber} Game`;
 
-  document.getElementById("gameSubtitle").innerText =
-    chapter.title || chapter.name || "";
+  document.getElementById(
+    "gameTitle"
+  ).innerText =
+    `Chapter ${number} Game`;
+
+
+  document.getElementById(
+    "gameSubtitle"
+  ).innerText =
+    getChapterTitle(chapter);
+
 
   showQuestion();
 
 }
 
 
+// ================= SHOW QUESTION =================
+
 function showQuestion(){
 
   const question =
-    gameQuestions[currentQuestion];
+    gameQuestions[
+      currentQuestion
+    ];
+
 
   if(!question){
 
@@ -2031,77 +1746,125 @@ function showQuestion(){
 
   }
 
-  document.getElementById("questionNumber").innerText =
+
+  document.getElementById(
+    "questionNumber"
+  ).innerText =
     `Question ${currentQuestion + 1} of ${gameQuestions.length}`;
 
-  document.getElementById("gameScore").innerText =
+
+  document.getElementById(
+    "gameScore"
+  ).innerText =
     `Score: ${currentScore}`;
 
-  document.getElementById("gameProgressBar").style.width =
-    `${((currentQuestion) / gameQuestions.length) * 100}%`;
 
-  document.getElementById("questionText").innerText =
+  document.getElementById(
+    "gameProgressBar"
+  ).style.width =
+    `${(currentQuestion / gameQuestions.length) * 100}%`;
+
+
+  document.getElementById(
+    "questionText"
+  ).innerText =
     question.question;
 
+
   const answers =
-    document.getElementById("answers");
+    document.getElementById(
+      "answers"
+    );
+
 
   answers.innerHTML = "";
+
 
   question.options.forEach(option=>{
 
     const button =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
-    button.className = "answer-btn";
+    button.className =
+      "answer-btn";
 
-    button.innerText = option;
+    button.innerText =
+      option;
 
-    button.onclick = () =>
-      checkAnswer(button,option);
+    button.onclick =
+      () => checkAnswer(
+        button,
+        option
+      );
 
-    answers.appendChild(button);
+    answers.appendChild(
+      button
+    );
 
   });
 
-  document.getElementById("nextQuestionBtn").style.display =
+
+  document.getElementById(
+    "nextQuestionBtn"
+  ).style.display =
     "none";
 
 }
 
 
+// ================= ANSWER =================
+
 function checkAnswer(button,selected){
 
   const question =
-    gameQuestions[currentQuestion];
+    gameQuestions[
+      currentQuestion
+    ];
+
 
   const buttons =
-    document.querySelectorAll(".answer-btn");
+    document.querySelectorAll(
+      ".answer-btn"
+    );
+
 
   buttons.forEach(btn=>{
     btn.disabled = true;
   });
 
+
   const correct =
     selected.toLowerCase() ===
     question.answer.toLowerCase();
 
+
   if(correct){
 
-    button.classList.add("correct");
+    button.classList.add(
+      "correct"
+    );
 
     currentScore += 10;
 
   }else{
 
-    button.classList.add("wrong");
+    button.classList.add(
+      "wrong"
+    );
+
 
     buttons.forEach(btn=>{
 
-      if(btn.innerText.toLowerCase() ===
-         question.answer.toLowerCase()){
+      if(
+        btn.innerText.toLowerCase() ===
+        question.answer.toLowerCase()
+      ){
 
-        btn.classList.add("correct");
+        btn.classList.add(
+          "correct"
+        );
 
       }
 
@@ -2109,14 +1872,22 @@ function checkAnswer(button,selected){
 
   }
 
-  document.getElementById("gameScore").innerText =
+
+  document.getElementById(
+    "gameScore"
+  ).innerText =
     `Score: ${currentScore}`;
 
-  document.getElementById("nextQuestionBtn").style.display =
+
+  document.getElementById(
+    "nextQuestionBtn"
+  ).style.display =
     "block";
 
 }
 
+
+// ================= NEXT =================
 
 function nextQuestion(){
 
@@ -2127,86 +1898,122 @@ function nextQuestion(){
 }
 
 
-// ---------- GAME RESULT ----------
+// ================= RESULT =================
 
 function finishGame(){
 
   hidePages();
 
-  document.getElementById("gameResult").style.display =
+  document.getElementById(
+    "gameResult"
+  ).style.display =
     "block";
+
 
   const total =
     gameQuestions.length * 10;
 
+
   const accuracy =
     total === 0
       ? 0
-      : Math.round((currentScore / total) * 100);
+      : Math.round(
+          (currentScore / total) * 100
+        );
+
 
   const xp =
     currentScore + 20;
 
-  document.getElementById("finalScore").innerText =
+
+  document.getElementById(
+    "finalScore"
+  ).innerText =
     currentScore;
 
-  document.getElementById("finalAccuracy").innerText =
+
+  document.getElementById(
+    "finalAccuracy"
+  ).innerText =
     accuracy + "%";
 
-  document.getElementById("finalXP").innerText =
+
+  document.getElementById(
+    "finalXP"
+  ).innerText =
     xp;
 
-  document.getElementById("resultText").innerText =
-    `You completed Chapter ${currentChapter.chapter}. Keep revising the chapter so the knowledge stays with you.`;
 
-  const stats = getGameStats();
+  document.getElementById(
+    "resultText"
+  ).innerText =
+    `You completed Chapter ${getChapterNumber(currentChapter)}. Keep revising it so the important points stay in your memory.`;
+
+
+  const stats =
+    getGameStats();
+
 
   stats.played += 1;
+
   stats.xp += xp;
+
 
   saveGameStats(stats);
 
 }
 
 
-// ---------- PROGRESS PAGE ----------
+// ================= PROGRESS =================
 
 function renderProgress(){
 
-  const progress = getProgress();
+  const progress =
+    getProgress();
 
-  const stats = getGameStats();
+  const stats =
+    getGameStats();
+
 
   const readCount =
     Object.values(progress)
-      .filter(Boolean).length;
+      .filter(Boolean)
+      .length;
 
-  document.getElementById("chaptersRead").innerText =
+
+  document.getElementById(
+    "chaptersRead"
+  ).innerText =
     readCount;
 
-  document.getElementById("gamesPlayed").innerText =
+
+  document.getElementById(
+    "gamesPlayed"
+  ).innerText =
     stats.played;
 
-  document.getElementById("totalXP").innerText =
+
+  document.getElementById(
+    "totalXP"
+  ).innerText =
     stats.xp;
 
 
   const container =
-    document.getElementById("chapterProgressList");
+    document.getElementById(
+      "chapterProgressList"
+    );
+
 
   container.innerHTML =
     bookData.map(chapter=>{
 
       const number =
-        Number(chapter.chapter || chapter.number);
-
-      const title =
-        chapter.title ||
-        chapter.name ||
-        `Chapter ${number}`;
+        getChapterNumber(chapter);
 
       const completed =
         progress[number];
+
 
       return `
 
@@ -2219,13 +2026,17 @@ function renderProgress(){
             </strong>
 
             <p>
-              ${escapeHTML(title)}
+              ${escapeHTML(
+                getChapterTitle(chapter)
+              )}
             </p>
 
           </div>
 
           <span>
-            ${completed ? "✅ Read" : "○ Not read"}
+            ${completed
+              ? "✅ Read"
+              : "○ Not read"}
           </span>
 
         </div>
@@ -2237,7 +2048,7 @@ function renderProgress(){
 }
 
 
-// ---------- ESCAPE HTML ----------
+// ================= ESCAPE =================
 
 function escapeHTML(value){
 
@@ -2251,29 +2062,56 @@ function escapeHTML(value){
 }
 
 
-// ---------- LOAD BOOK ----------
+// ================= LOAD BOOK =================
 
 async function loadBook(){
 
   try{
 
     const response =
-      await fetch("./krishna_chapters.json");
+      await fetch(
+        "./krishna_chapters.json"
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "JSON file not found"
+      );
+
+    }
+
 
     const json =
       await response.json();
 
+
     bookData =
-      json.chapters || json;
+      json.chapters ||
+      json;
+
+
+    if(!Array.isArray(bookData)){
+
+      throw new Error(
+        "Invalid chapter data"
+      );
+
+    }
+
 
     bookData =
       bookData
         .map((chapter,index)=>{
 
-          if(!chapter.chapter &&
-             !chapter.number){
+          if(
+            !chapter.chapter &&
+            !chapter.number
+          ){
 
-            chapter.chapter = index + 1;
+            chapter.chapter =
+              index + 1;
 
           }
 
@@ -2283,17 +2121,23 @@ async function loadBook(){
         .filter(chapter=>{
 
           const number =
-            Number(chapter.chapter || chapter.number);
+            getChapterNumber(
+              chapter
+            );
 
-          return number >= 1 && number <= 90;
+          return (
+            number >= 1 &&
+            number <= 90
+          );
 
         })
-        .sort((a,b)=>{
+        .sort((a,b)=>
+          getChapterNumber(a) -
+          getChapterNumber(b)
+        );
 
-          return Number(a.chapter || a.number) -
-                 Number(b.chapter || b.number);
 
-        });
+    renderHomeChapters();
 
     renderBookmarks();
 
@@ -2301,20 +2145,41 @@ async function loadBook(){
 
     renderProgress();
 
+    searchChapters();
+
+
   }catch(error){
 
     console.error(error);
 
-    alert(
-      "krishna_chapters.json could not be loaded."
-    );
+
+    document.getElementById(
+      "homeChapterList"
+    ).innerHTML = `
+
+      <div class="empty-state">
+
+        <h3>
+          Could not load chapters
+        </h3>
+
+        <p>
+          Make sure
+          <b>krishna_chapters.json</b>
+          is in the same GitHub folder
+          as index.html.
+        </p>
+
+      </div>
+
+    `;
 
   }
 
 }
 
 
-// ---------- START ----------
+// ================= START =================
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -2322,3 +2187,6 @@ document.addEventListener(
 );
 
 </script>
+
+</body>
+</html>
